@@ -1,0 +1,41 @@
+<ion-header style="background-color: #488aff; color: white;">
+  <ion-navbar>
+    <ion-title>
+      Registro
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Datos para el Registro</h1>
+  <ion-item>
+    <ion-label floating>Correo electrónico</ion-label>
+    <ion-input type="text" [(ngModel)]="correo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Repita Password</ion-label>
+    <ion-input type="password" [(ngModel)]="repitaPassword"></ion-input>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label>Acepto las condiciones del servicio</ion-label>
+    <ion-checkbox color="dark" [(ngModel)]="checkCondiciones"></ion-checkbox>
+  </ion-item>
+  <ion-item no-lines style="margin-top:3%">
+      <ion-col>
+          <button ion-button color="secondary" (click)="volver()" clear>Cancelar</button>
+      </ion-col>
+      <ion-col>
+          <button  style="float: right;" ion-button color="primary" (click)="registrarse()" clear>Guardar</button>
+      </ion-col>
+  </ion-item>
+
+
+</ion-content>

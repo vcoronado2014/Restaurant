@@ -1,0 +1,37 @@
+
+  <ion-header style="background-color: #488aff; color: white;">
+  <ion-navbar>
+    <ion-title>
+      Inicio
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1 text-center>Benvenido a la aplicación</h1>
+  <h1 text-center>All-toK</h1>
+  <p text-justify>
+    Si usted ya se encuentra registrado, ingrese su correo electrónico y la contraseña definida en el momento del registro, de lo contrario presione el botón "Registrarse".
+  </p>
+  <ion-list no-lines>
+    <ion-item>
+      <ion-label floating>Correo electrónico</ion-label>
+      <ion-input type="text" [(ngModel)]="correo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Recordarme</ion-label>
+      <ion-checkbox color="dark" [(ngModel)]="checkRecordar" (ionChange)="guardarPreferencia(checkRecordar)"></ion-checkbox>
+    </ion-item>
+    <button color="primary" ion-button full (click)="login()">Ingresar</button>
+
+  </ion-list>
+  <div class="row">
+    <button color="secondary" ion-button full (click)="abrirPaginaRegistro()">Registrarse</button>
+  </div>
+</ion-content>

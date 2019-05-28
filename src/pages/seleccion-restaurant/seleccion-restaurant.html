@@ -1,0 +1,65 @@
+<ion-header style="background-color: #488aff; color: white;">
+    <ion-navbar>
+      <ion-title>
+        Selección
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    <!--lista charcha
+    <ion-list>
+        <button ion-item *ngFor="let item of arrRestaurantes">
+          {{ item.Nombre }} {{item.Direccion}}
+        </button>  
+      </ion-list>-->
+      <!--lista bakan -->
+      <h1>Restaurantes disponibles</h1>
+      <p>Bienvenido <strong>{{nombrePersona}}</strong> acá podrás elegir tu restaurant favorito para agendar Mesa.</p>
+      <ion-list>
+          <ion-item-sliding *ngFor="let item of arrRestaurantes">
+          <ion-item>
+            <ion-avatar item-start>
+                <img [src]="item.Foto">
+            </ion-avatar>
+            <h2>{{ item.Nombre }}</h2>
+            <p text-wrap>{{item.Direccion}}</p>
+            <p text-wrap><strong>{{item.Tipo}}</strong></p>
+            <ion-item no-lines>
+                <ion-badge item-end>Disponibles: {{item.MesasDisponibles.length}}</ion-badge>
+                <ion-badge color="danger" item-end>Ocupadas: {{item.MesasOcupadas.length}}</ion-badge>
+                <!--
+                <ion-col>
+                    Disponibles: <strong>{{item.MesasDisponibles.length}}</strong>
+                  </ion-col>
+                  <ion-col>
+                      Ocupadas: <strong>{{item.MesasOcupadas.length}}</strong>
+                    </ion-col>-->
+            </ion-item>
+
+            <ion-note class="note">Deslize a la izquierda para ver las opciones</ion-note>
+          </ion-item>
+          <ion-item-options side="right">
+              <button ion-button color="primary" (click)="abrirReserva(item)">
+                <ion-icon name="checkbox"></ion-icon>
+                Reservar
+              </button>
+              <!--
+              <button ion-button color="secondary">
+                <ion-icon name="call"></ion-icon>
+                Call
+              </button>
+              -->
+            </ion-item-options>
+        </ion-item-sliding>
+        </ion-list>
+        <ion-item no-lines style="margin-top:3%">
+            <ion-col>
+                <button ion-button color="secondary" (click)="volver()" clear>Cancelar</button>
+            </ion-col>
+            <ion-col>
+                <!--<button  style="float: right;" ion-button color="primary" (click)="registrarse()" clear>Guardar</button>-->
+            </ion-col>
+        </ion-item>
+
+</ion-content>
