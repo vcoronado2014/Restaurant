@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { RegistroPage } from '../pages/registro/registro';
 import { SeleccionRestaurantPage } from '../pages/seleccion-restaurant/seleccion-restaurant';
 import { ReservaMesaPage } from '../pages/reserva-mesa/reserva-mesa';
+import { ReservaHoraPage } from '../pages/reserva-hora/reserva-hora';
+import { InicioPage } from '../pages/inicio/inicio';
+import { MisReservasPage } from '../pages/mis-reservas/mis-reservas';
 //servicios
 import { GlobalService } from '../app/services/GlobalService';
 
@@ -18,6 +21,9 @@ import { GlobalService } from '../app/services/GlobalService';
     HomePage,
     RegistroPage,
     ReservaMesaPage,
+    ReservaHoraPage,
+    InicioPage,
+    MisReservasPage,
     SeleccionRestaurantPage
   ],
   imports: [
@@ -30,6 +36,9 @@ import { GlobalService } from '../app/services/GlobalService';
     HomePage,
     RegistroPage,
     ReservaMesaPage,
+    ReservaHoraPage,
+    InicioPage,
+    MisReservasPage,
     SeleccionRestaurantPage
   ],
   providers: [

@@ -7,12 +7,6 @@
   </ion-header>
 
 <ion-content padding>
-    <!--lista charcha
-    <ion-list>
-        <button ion-item *ngFor="let item of arrRestaurantes">
-          {{ item.Nombre }} {{item.Direccion}}
-        </button>  
-      </ion-list>-->
       <!--lista bakan -->
       <h1>Restaurantes disponibles</h1>
       <p>Bienvenido <strong>{{nombrePersona}}</strong> acá podrás elegir tu restaurant favorito para agendar Mesa.</p>
@@ -25,9 +19,11 @@
             <h2>{{ item.Nombre }}</h2>
             <p text-wrap>{{item.Direccion}}</p>
             <p text-wrap><strong>{{item.Tipo}}</strong></p>
-            <ion-item no-lines>
-                <ion-badge item-end>Disponibles: {{item.MesasDisponibles.length}}</ion-badge>
-                <ion-badge color="danger" item-end>Ocupadas: {{item.MesasOcupadas.length}}</ion-badge>
+            <ion-item no-lines style="padding: 0;">
+                <ion-badge item-end>Horas Disponibles: {{item.HorasDisponibles}}</ion-badge>
+                <ion-badge color="danger" item-end>Horas Ocupadas: {{item.HorasReservadas}}</ion-badge>
+                <!--<ion-badge item-end>Disponibles: {{item.MesasDisponibles.length}}</ion-badge>
+                <ion-badge color="danger" item-end>Ocupadas: {{item.MesasOcupadas.length}}</ion-badge>-->
                 <!--
                 <ion-col>
                     Disponibles: <strong>{{item.MesasDisponibles.length}}</strong>

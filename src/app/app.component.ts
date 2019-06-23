@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import * as moment from 'moment';
 
 import { HomePage } from '../pages/home/home';
+import { daysInMonth } from 'ionic-angular/umd/util/datetime-util';
 @Component({
   templateUrl: 'app.html'
 })
@@ -268,6 +270,36 @@ export class MyApp {
       arrMesas.push(mesa20);
 
       localStorage.setItem('ARR_MESAS_RESTAURANTES', JSON.stringify(arrMesas));
+    }
+
+    //horas y dias disponibles para las mesas
+    //estas hay que procesarlas desde la fecha hora actual agregando un dia
+    if (!localStorage.getItem('ARR_HORAS_MESAS')){
+      var fechaInicio = moment().add(1, 'days');
+      //var fechaTermino = moment().add(1, 'days'); las mesas ids van desde la 1 a la 20
+      var arrHorasMesas = [];
+      var contador = 1;
+      for(var i = 0; i <= 7; i++){
+        var contadorMesas = 1;
+        var fechaAgendar = fechaInicio.add(1, 'days');
+        //20 veces la misma fecha
+        for (var j=1; j< 21; j++){
+
+          var entidad = {
+            Fecha: fechaAgendar.format(),
+            Id: contador,
+            MesaId: j,
+            Reservada: false
+          };
+  
+          arrHorasMesas.push(entidad);
+          contador++;
+        }
+
+      }
+
+      localStorage.setItem('ARR_HORAS_MESAS', JSON.stringify(arrHorasMesas));
+
     }
 
   }

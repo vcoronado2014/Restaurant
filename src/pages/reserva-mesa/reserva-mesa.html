@@ -1,14 +1,10 @@
-<!--
-  Generated template for the ReservaMesaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>ReservaMesa</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-header style="background-color: #488aff; color: white;">
+    <ion-navbar>
+      <ion-title>
+        Reservar
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content padding>
     <ion-card>
@@ -32,7 +28,7 @@
         
           <ion-item *ngFor="let mesa of item.Mesas">
             <ion-label><strong>{{mesa.Nombre}}</strong>, <ion-badge item-end>Cantidad Personas: {{mesa.Cantidad}}</ion-badge></ion-label>
-            <ion-radio [checked]="mesa.Reservada" [value]="mesa.Id" [disabled]="mesa.Reservada"></ion-radio>
+            <ion-radio [checked]="mesa.Reservada" [value]="mesa.Id" [disabled]="mesa.Reservada" (click)="seleccionar(mesa)"></ion-radio>
           </ion-item>
         <!--
           <ion-item>
@@ -51,7 +47,7 @@
                 <button ion-button color="secondary" (click)="closeModal(null)" clear>Cancelar</button>
             </ion-col>
             <ion-col>
-                <button  style="float: right;" ion-button color="primary" (click)="guardar()" clear>Reservar</button>
+                <button  style="float: right;" ion-button color="primary" (click)="guardar()" clear>Siguiente</button>
             </ion-col>
         </ion-item>
 

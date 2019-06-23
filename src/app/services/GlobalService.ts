@@ -1,5 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import * as moment from 'moment';
 
 
 
@@ -7,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class GlobalService {
     constructor(
     ) {
-
+        moment.locale('es');
     }
 
 
@@ -115,6 +117,25 @@ export class GlobalService {
                 arrRestaurantes.forEach(restaurant => {
                     //todas las mesas
                     restaurant.Mesas = this.mesasPorRestaurant(restaurant.Id).Usuario;
+                    var horasDisponibles = 0
+                    var horasReservadas = 0;
+                    if (restaurant.Mesas) {
+                        restaurant.Mesas.forEach(mesa => {
+                            if (mesa.Horas) {
+                                mesa.Horas.forEach(hora => {
+                                    if (hora.Reservada) {
+                                        horasReservadas++;
+                                    }
+                                    else {
+                                        horasDisponibles++;
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                    restaurant.HorasReservadas = horasReservadas;
+                    restaurant.HorasDisponibles = horasDisponibles;
                     //las mesas disponibles
                     restaurant.MesasDisponibles = this.mesasPorRestaurantDisponibles(restaurant.Id).Usuario;
                     //las mesas reservadas
@@ -149,9 +170,18 @@ export class GlobalService {
         else {
             var arreglo = JSON.parse(localStorage.getItem('ARR_MESAS_RESTAURANTES'));
             var arreglodevolver = [];
+
             if (arreglo && arreglo.length > 0){
                 arreglo.forEach(mesa => {
                     if (mesa.IdRestaurant == idRestaurant){
+                        //var totalHoras = 0;
+                        //var horasReservadas = 0;
+                        //aca vamos a entregar los horarios de las mesas
+                        mesa.Horas = this.agendaDeMesas(mesa.Id);
+                        //sacamos las horas disponibles
+
+                        //lo comentamos por nueva implementaciòn
+                        /*
                         var reservadas = this.reservasPorRestaurant(idRestaurant);
                         if (reservadas && reservadas.length > 0){
                             var mesaReservada = false;
@@ -167,6 +197,11 @@ export class GlobalService {
                         }
                         //ya existe
                         arreglodevolver.push(mesa);
+                        */
+                       //mesa.HorasDisponibles = totalHoras;
+                       //mesa.HorasReservadas = horasReservadas;
+                       arreglodevolver.push(mesa);
+
                     }
                 });
             }
@@ -195,12 +230,15 @@ export class GlobalService {
             if (arreglo && arreglo.length > 0){
                 arreglo.forEach(mesa => {
                     if (mesa.IdRestaurant == idRestaurant){
+                        //aca vamos a entregar los horarios de las mesas
+                        mesa.Horas = this.agendaDeMesas(mesa.Id);
                         //ya existe, ahora buscamos si tiene reserva
                         var reservadas = this.reservasPorRestaurant(idRestaurant);
                         if (reservadas && reservadas.length == 0){
                             //solo en el caso que no hayan reservas se agrega
                             arreglodevolver.push(mesa);
                         }
+
                         
                     }
                 });
@@ -244,8 +282,66 @@ export class GlobalService {
             retorno.Codigo = 0;
         }
         return retorno;
+    }
+    listarReservas(correo){
+        var retorno = [];
+        if (localStorage.getItem('ARR_RESERVAS')){
+            var arr = JSON.parse(localStorage.getItem('ARR_RESERVAS'));
+            arr.forEach(reserva => {
+                if (reserva.Correo == correo){
+                    retorno.push(reserva);
+                }
+                
+            });
+        }
+        return retorno;
+    }
+    contarReservasDelUsuario(correo, fechaStr){
+        var contador = 0;
+        var fechaActual = fechaStr;
+        if (localStorage.getItem('ARR_RESERVAS')){
+            var arrReservas = JSON.parse(localStorage.getItem('ARR_RESERVAS'));
+            arrReservas.forEach(reserva => {
+                if (correo == reserva.Correo && fechaActual == reserva.Hora.FechaStr){
+                    contador++;
+                }
+                
+            });
+
+        }
+        return contador;
+    }
+    eliminarReserva(item){
+        var retorno = {
+            Usuario: null,
+            Mensaje: null,
+            Codigo: 0
+        };
+        if (localStorage.getItem('ARR_RESERVAS')){
+            //SI NO EXISTE EL OBJETO EN LOCAL STORAGE
+            var arrNuevo = [];
+            var arrReservas = JSON.parse(localStorage.getItem('ARR_RESERVAS'));
+            arrReservas.forEach(reserva => {
+                if (reserva.Correo == item.Correo && reserva.IdHora == item.IdHora && reserva.IdMesa == item.IdMesa && reserva.IdRestaurant == item.IdRestaurant){
+                    //esta es la que hay que eliminar, asi que no debe agregarse al elemento
+
+                }
+                else{
+                    //agregar
+                    arrNuevo.push(reserva);
+                }
+            });
+
+            //ahora la desmarcamos de reservada
+            this.marcarReservaEliminada(item.IdHora);
+            retorno.Usuario = item;
+            retorno.Mensaje = 'Reserva eliminada con éxito';
+            retorno.Codigo = 0;
+            localStorage.setItem('ARR_RESERVAS', JSON.stringify(arrNuevo));
+        }
+        return retorno;
     } 
-    insertarReserva(idRestaurant, idMesa){
+    insertarReserva(idRestaurant, idMesa, idHora, correo, horaCompleta, restaurant){
         var retorno = {
             Usuario: null,
             Mensaje: null,
@@ -253,45 +349,82 @@ export class GlobalService {
         };
         var mesaReservar = {
             IdRestaurant: idRestaurant,
-            IdMesa: idMesa
+            IdMesa: idMesa,
+            IdHora: idHora,
+            Correo: correo,
+            Hora: horaCompleta,
+            Restaurant: restaurant
         };
-        if (!localStorage.getItem('ARR_RESERVAS')){
-            //SI NO EXISTE EL OBJETO EN LOCAL STORAGE
-            var arrReservas = [];
-
-            arrReservas.push(mesaReservar);
+        //contaremos las reservas del usuario
+        var cantidadReservas = this.contarReservasDelUsuario(correo, horaCompleta.FechaStr);
+        if (cantidadReservas > 0){
             retorno.Usuario = mesaReservar;
-            retorno.Mensaje = 'Reserva creado con éxito';
-            retorno.Codigo = 0;
-            localStorage.setItem('ARR_RESERVAS', JSON.stringify(arrReservas));
+            retorno.Mensaje = 'Usted ya tiene una reserva para ese día';
+            retorno.Codigo = 1;
         }
-        else{
-            //SI EXISTE EL OBJETO EN LOCAL STORAGE
-            var existe = false;
-            var arreglo = JSON.parse(localStorage.getItem('ARR_RESERVAS'));
-            if (arreglo && arreglo.length > 0){
-                arreglo.forEach(reserva => {
-                    if (reserva.IdRestaurant == idRestaurant && reserva.IdMesa == idMesa){
-                        //ya existe
-                        existe = true;
-                    }
-                });
-            }
-            if (existe){
+        else {
+            if (!localStorage.getItem('ARR_RESERVAS')){
+                //SI NO EXISTE EL OBJETO EN LOCAL STORAGE
+                var arrReservas = [];
+                this.marcarReserva(idHora);
+                arrReservas.push(mesaReservar);
                 retorno.Usuario = mesaReservar;
-                retorno.Mensaje = 'La mesa ya esta reservada';
-                retorno.Codigo = 1;
-            }
-            else {
-                arreglo.push(mesaReservar);
-                retorno.Usuario = mesaReservar;
-                retorno.Mensaje = 'Mesa reservada con éxito';
+                retorno.Mensaje = 'Reserva creado con éxito';
                 retorno.Codigo = 0;
-                localStorage.setItem('ARR_RESERVAS', JSON.stringify(arreglo));
+                localStorage.setItem('ARR_RESERVAS', JSON.stringify(arrReservas));
             }
-
+            else{
+                //SI EXISTE EL OBJETO EN LOCAL STORAGE
+                var existe = false;
+                var arreglo = JSON.parse(localStorage.getItem('ARR_RESERVAS'));
+                if (arreglo && arreglo.length > 0){
+                    arreglo.forEach(reserva => {
+                        if (reserva.IdHora == idHora){
+                            //ya existe
+                            existe = true;
+                        }
+                    });
+                }
+                if (existe){
+                    retorno.Usuario = mesaReservar;
+                    retorno.Mensaje = 'La mesa ya esta reservada para ese día';
+                    retorno.Codigo = 1;
+                }
+                else {
+                    //acá hay que modificar el elemento de hora para marcarlo reservado
+                    this.marcarReserva(idHora);
+                    arreglo.push(mesaReservar);
+                    retorno.Usuario = mesaReservar;
+                    retorno.Mensaje = 'Mesa reservada con éxito';
+                    retorno.Codigo = 0;
+                    localStorage.setItem('ARR_RESERVAS', JSON.stringify(arreglo));
+                }
+    
+            }
         }
         return retorno;
+    }
+    marcarReserva(idHora) {
+        if (localStorage.getItem('ARR_HORAS_MESAS')) {
+            var arreglo = JSON.parse(localStorage.getItem('ARR_HORAS_MESAS'));
+            arreglo.forEach(hora => {
+                if (hora.Id == idHora){
+                    hora.Reservada = true;
+                }
+            });
+            localStorage.setItem('ARR_HORAS_MESAS', JSON.stringify(arreglo));
+        }
+    }
+    marcarReservaEliminada(idHora) {
+        if (localStorage.getItem('ARR_HORAS_MESAS')) {
+            var arreglo = JSON.parse(localStorage.getItem('ARR_HORAS_MESAS'));
+            arreglo.forEach(hora => {
+                if (hora.Id == idHora){
+                    hora.Reservada = false;
+                }
+            });
+            localStorage.setItem('ARR_HORAS_MESAS', JSON.stringify(arreglo));
+        }
     }
     reservasPorRestaurant(idRestaurant){
         var retorno = [];
@@ -303,6 +436,22 @@ export class GlobalService {
                     if (reserva.IdRestaurant == idRestaurant){
                         //ya existe
                         arreglodevolver.push(reserva);
+                    }
+                });
+            }
+        }
+        return retorno;
+    }
+    agendaDeMesas(idMesa){
+        var retorno = [];
+        if (localStorage.getItem('ARR_HORAS_MESAS')){
+            var arreglo = JSON.parse(localStorage.getItem('ARR_HORAS_MESAS'));
+            //var arreglodevolver = [];
+            if (arreglo && arreglo.length > 0){
+                arreglo.forEach(reserva => {
+                    if (reserva.MesaId == idMesa){
+                        //ya existe
+                        retorno.push(reserva);
                     }
                 });
             }

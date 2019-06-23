@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import {HomePage} from "../home/home";
+import {InicioPage} from "../inicio/inicio";
+import {ReservaHoraPage} from "../reserva-hora/reserva-hora";
+import { GlobalService } from '../../app/services/GlobalService';
 
 /**
  * Generated class for the ReservaMesaPage page.
@@ -14,7 +18,14 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class ReservaMesaPage {
 item;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+mesaSeleccionada;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public global: GlobalService, 
+    public modalCtrl: ModalController,
+    public viewCtrl: ViewController
+  ) {
     this.item = this.navParams.get('item');
     console.log(this.item);
   }
@@ -23,10 +34,20 @@ item;
     console.log('ionViewDidLoad ReservaMesaPage');
   }
   closeModal(param) {
-    this.viewCtrl.dismiss();
+    //this.viewCtrl.dismiss();
+    this.navCtrl.setRoot(InicioPage);
+  }
+  seleccionar(mesa){
+    console.log(mesa);
+    this.mesaSeleccionada = mesa;
   }
   guardar(){
-    this.closeModal(null);
+    //this.closeModal(null);
+    if (this.mesaSeleccionada != null){
+      let modal = this.modalCtrl.create(ReservaHoraPage, { item: this.mesaSeleccionada, restaurant: this.item });
+      modal.present();
+    }
+
   }
 
 }

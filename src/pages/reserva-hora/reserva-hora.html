@@ -1,0 +1,48 @@
+<ion-header style="background-color: #488aff; color: white;">
+    <ion-navbar>
+      <ion-title>
+        Reservar Día
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="restaurant.Foto">
+      </ion-avatar>
+      <h2>{{ restaurant.Nombre }}</h2>
+      <p text-wrap>{{restaurant.Direccion}}</p>
+      <p text-wrap><strong>{{restaurant.Tipo}}</strong></p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item text-wrap>
+      <p text-justify>Usted está reservando la {{mesaSeleccionada.Nombre}} para {{mesaSeleccionada.Cantidad}} personas, a continuación seleccione el día que desea reservarla y luego presione el botón "Reservar".</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group>
+      <ion-list-header>
+        Días Disponibles
+      </ion-list-header>
+    
+      <ion-item *ngFor="let item of mesaSeleccionada.Horas">
+        <ion-label><strong>{{item.FechaStr}}</strong></ion-label>
+        <ion-radio  [value]="item.Id" [disabled]="item.Reservada" (click)="seleccionar(item)"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+
+    <ion-item no-lines style="margin-top:3%">
+        <ion-col>
+            <button ion-button color="secondary" (click)="closeModal(null)" clear>Cancelar</button>
+        </ion-col>
+        <ion-col>
+            <button  style="float: right;" ion-button color="primary" (click)="guardar()" clear>Reservar</button>
+        </ion-col>
+    </ion-item>
+
+</ion-content>

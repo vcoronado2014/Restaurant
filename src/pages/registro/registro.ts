@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {SeleccionRestaurantPage} from "../seleccion-restaurant/seleccion-restaurant";
+import {InicioPage} from "../inicio/inicio";
 //servicios
 import { GlobalService } from '../../app/services/GlobalService';
 import 'rxjs/add/operator/map';
@@ -60,6 +61,10 @@ export class RegistroPage {
       let sms = this.presentToast('Las contraseñas deben coincidir', 'top', 3000);
       return;
     }
+    if (this.validaEmail(this.correo) == false){
+      let sms = this.presentToast('El correo electrónico es inválido', 'top', 3000);
+      return;
+    }
 
     let loader = this.loading.create({
       content: 'Registrando...',
@@ -71,7 +76,8 @@ export class RegistroPage {
       if (entidad.Codigo == 0){
         //acá lo enviamos a la seleccion de restaurantes directo
         loader.dismiss();
-        this.navCtrl.setRoot(SeleccionRestaurantPage);
+        //this.navCtrl.setRoot(SeleccionRestaurantPage);
+        this.navCtrl.setRoot(InicioPage);
       }
       else {
         //hubo un error
@@ -100,6 +106,14 @@ export class RegistroPage {
     });
 
     toast.present();
+  }
+  validaEmail(correo){
+    var retorno = false;
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(correo);
+    if (re){
+      retorno = true;
+    }
+    return retorno;
   }
 
 }

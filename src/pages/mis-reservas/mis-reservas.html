@@ -1,0 +1,44 @@
+<ion-header style="background-color: #488aff; color: white;">
+    <ion-navbar>
+      <ion-title>
+        Mis Reservas
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-list *ngIf="arrReservas.length > 0">
+        <ion-item-sliding  *ngFor="let item of arrReservas">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.Restaurant.Foto">
+          </ion-avatar>
+          <h2>{{ item.Restaurant.Nombre }}</h2>
+          <p text-wrap>{{item.Restaurant.Direccion}}</p>
+          <p text-wrap><strong>El {{item.Hora.FechaStr}}</strong></p>
+          <ion-note class="note">Deslize a la izquierda para ver las opciones</ion-note>
+        </ion-item>
+        
+        <ion-item-options side="right">
+            <button ion-button color="danger" (click)="eliminar(item)">
+              <ion-icon name="trash"></ion-icon>
+              Eliminar
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+      <ion-list *ngIf="arrReservas.length == 0">
+        <ion-item>
+          <h5>No tiene reservas realizadas</h5>
+        </ion-item>
+      </ion-list>
+
+  <ion-item no-lines style="margin-top:3%">
+    <ion-col>
+      <button ion-button color="secondary" (click)="closeModal(null)" clear>Volver</button>
+    </ion-col>
+    <ion-col>
+      <!--<button style="float: right;" ion-button color="primary" (click)="guardar()" clear>Siguiente</button>-->
+    </ion-col>
+  </ion-item>
+</ion-content>

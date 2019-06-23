@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {InicioPage} from "../inicio/inicio";
 import {ReservaMesaPage} from "../reserva-mesa/reserva-mesa";
 import { GlobalService } from '../../app/services/GlobalService';
 
@@ -18,7 +19,12 @@ import { GlobalService } from '../../app/services/GlobalService';
 export class SeleccionRestaurantPage {
   arrRestaurantes = [];
   nombrePersona;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public global: GlobalService, public modalCtrl: ModalController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public global: GlobalService, 
+    public modalCtrl: ModalController
+    ) {
     var userInfo = JSON.parse(localStorage.getItem("USER_INFO"));
     this.nombrePersona = userInfo.Nombre;
     this.cargar();
@@ -41,7 +47,8 @@ export class SeleccionRestaurantPage {
     */
   }
   volver(){
-    this.navCtrl.setRoot(HomePage);
+    //this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(InicioPage);
   }
   abrirReserva(item) {
 

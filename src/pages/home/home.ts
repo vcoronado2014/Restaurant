@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import {RegistroPage} from "../registro/registro";
+import {InicioPage} from "../inicio/inicio";
 import {SeleccionRestaurantPage} from "../seleccion-restaurant/seleccion-restaurant";
 import { GlobalService } from '../../app/services/GlobalService';
 
@@ -21,6 +22,8 @@ nombrePersona: string = '';
     public loading: LoadingController,
     public global: GlobalService
   ) {
+    //prueba
+    //console.log(this.global.agendaDeMesas(1));
     //esta logica es para recordar la contraseña
     var userInfo = JSON.parse(localStorage.getItem("USER_INFO"));
     if (userInfo && userInfo.Correo != '' && userInfo.Password != '') {
@@ -67,7 +70,8 @@ nombrePersona: string = '';
       if (entidad.Codigo == 0){
         loader.dismiss();
         //esta correcto, llevarlo a la pagina de restaurantes
-        this.navCtrl.setRoot(SeleccionRestaurantPage);
+        //this.navCtrl.setRoot(SeleccionRestaurantPage);
+        this.navCtrl.setRoot(InicioPage);
       }
       else {
         //hubo un error
