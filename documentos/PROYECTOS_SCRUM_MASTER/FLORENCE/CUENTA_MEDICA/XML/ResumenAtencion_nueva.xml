@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-16"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ResumenAtencion">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IdAtencion" type="xs:string" minOccurs="1" maxOccurs="1"/>				
+				<xs:element name="AmbitoAtencion" minOccurs="1" maxOccurs="1"> 
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="1"/><!--Hospitalaria-->
+							<xs:enumeration value="2"/><!--Urgencia-->
+							<xs:enumeration value="3"/><!--Ambulatoria--> 
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>			
+				<xs:element name="Establecimiento" minOccurs="1" maxOccurs="1"> 
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IdEstablecimiento" type="xs:string" minOccurs="1" maxOccurs="1"/>	
+							<xs:element name="CodigoDEISEstablecimiento" type="xs:string" minOccurs="1" maxOccurs="1"/>	
+							<xs:element name="DescripcionEstablecimiento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="RutJuridicoEstablecimiento" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="IdServicioSalud" type="xs:string" minOccurs="0" maxOccurs="1"/><!--OK-->						
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Sector" minOccurs="1" maxOccurs="1"> 
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IdSector" type="xs:string" minOccurs="1" maxOccurs="1"/>	
+							<xs:element name="CodigoSector" type="xs:string" minOccurs="1" maxOccurs="1"/>	
+							<xs:element name="NombreSector" type="xs:string" minOccurs="1" maxOccurs="1"/>	
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Instrumento" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CodigoInstrumento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="DescripcionInstrumento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="Especialidad" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CodigoDEISEspecialidad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="DescripcionEspecialidad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="TipoAtencion" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NombreTipoAtencion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="CodigoTipoAtencion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EstadoAtencion" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NombreEstadoAtencion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="CodigoEstadoAtencion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="FechaHoraInicioAtencion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="FechaHoraFinAtencion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="FechaHoraAltaAdministrativa" type="xs:string" minOccurs="0" maxOccurs="1"/>				
+				<xs:element name="EstadoPacienteAlta" minOccurs="0" maxOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="1"/><!--Vivo-->
+							<xs:enumeration value="2"/><!--Fallecido-->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>				
+				<xs:element name="PrevisionesPaciente" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PrevisionPaciente" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NombreInstitucionPrevisional" type="xs:string"/>
+										<xs:element name="CodigoInstitucionPrevisional" type="xs:string"/>
+										<xs:element name="NombreConvenioPrevisional" type="xs:string"/>
+										<xs:element name="CodigoConvenioPrevisional" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="AlertasPaciente" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AlertaPaciente" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NombreAlertaPaciente" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="CodigoAlertaPaciente" type="xs:string" minOccurs="0" maxOccurs="1"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="Paciente">
+					<xs:complexType>
+						<xs:sequence>						
+							<xs:element name="IdentificadoresPaciente" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdentificadorPaciente" minOccurs="1" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodigoTipoIdentificacion" minOccurs="1" maxOccurs="1">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="1"/><!--Cedula de Identidad--> rayen Tipo = 0
+																<xs:enumeration value="2"/><!--Pasaporte--> rayen Tipo = 2
+																<xs:enumeration value="3"/><!--Tarjeta de Ciudadanía -->
+																<xs:enumeration value="4"/><!--Visa de Trabajo-->
+																<xs:enumeration value="5"/><!--Numero de ficha clinica-->
+																<xs:enumeration value="6"/><!--ID RYF--> USP -> ID_RYF
+																<xs:enumeration value="7"/><!--Otro-->
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ValorIdentificacion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>														
+							<xs:element name="CodigoSexo" minOccurs="0" maxOccurs="1">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="I"/><!--Indeterminado-->
+										<xs:enumeration value="F"/><!--Mujer-->
+										<xs:enumeration value="M"/><!--Hombre-->
+										<xs:enumeration value="O"/><!--Otro-->
+										<xs:enumeration value="U"/><!--Desconocido-->
+										<xs:enumeration value="S"/><!--Sin Definifir-->
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>							
+							<xs:element name="Nombres" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="PrimerApellido" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="SegundoApellido" type="xs:string" minOccurs="0" maxOccurs="1"/>						
+							<xs:element name="FechaNacimiento" type="xs:string" minOccurs="0" maxOccurs="1"/>						
+							<xs:element name="Direccion" minOccurs="0" maxOccurs="1"><!--OK-->
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Calle" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="IdComuna" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="IdProvincia" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="IdRegion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="IdPais" type="xs:string" minOccurs="0" maxOccurs="1"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>							
+							<xs:element name="Nacionalidad" minOccurs="0" maxOccurs="unbounded"><!--OK-->
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoNacionalidad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="NombreNacionalidad" type="xs:string" minOccurs="0" maxOccurs="1"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>							
+							<xs:element name="EstadoCivil" minOccurs="0" maxOccurs="unbounded"><!--OK-->
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoEstadoCivil" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="NombreEstadoCivil" type="xs:string" minOccurs="0" maxOccurs="1"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>							
+							<xs:element name="Religion" minOccurs="0" maxOccurs="unbounded"><!--OK-->
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoReligion" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="NombreReligion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AntecedentesPaciente" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>										
+										<xs:element name="Alergias" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Alergia" minOccurs="0" maxOccurs="unbounded"><!--OK-->
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NombreAlergia" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="CodigoAlergia" type="xs:string" minOccurs="1" maxOccurs="1"/>																
+																<xs:element name="FechaActivacionAlergia" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="FechaInactivacionAlergia" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="CodigoSeveridadAlergia" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="EstadoAlergia" type="xs:string" minOccurs="0" maxOccurs="1"/>									
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>										
+										<xs:element name="MorbidosPersonales" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="MorbidoPersonal" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NombreMorbidoPersonal" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="CodigoMorbidoPersonal" type="xs:string" minOccurs="1" maxOccurs="1"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="MorbidosFamiliares" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="MorbidoFamiliar" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NombreMorbidoFamiliar" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="CodigoMorbidoFamiliar" type="xs:string" minOccurs="1" maxOccurs="1"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>										
+										<xs:element name="FactoresRiesgo" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FactorRiesgo" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="NombreFactorRiesgo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="CodigoFactorRiesgo" type="xs:string" minOccurs="1" maxOccurs="1"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>																				
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="Anamnesis" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							
+							<xs:element name="IdAnamnesis" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							
+							<xs:element name="MotivoConsultaAnamnesis" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="HistoriaEnfermedadActual" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="DiagnosticosAtencion" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DiagnosticoAtencion"  minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CodigoDiagnostico" type="xs:string"/>
+										<xs:element name="TipoCodigoDiagnostico" type="TipoCodificacion" minOccurs="0" maxOccurs="1"/>										
+										<xs:element name="DescripcionDiagnostico" type="xs:string"/>
+										<xs:element name="ObservacionDiagnostico" type="xs:string" minOccurs="0"/>
+										<xs:element name="EstadoDiagnostico">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="1"/><!--Sospecha-->
+													<xs:enumeration value="2"/><!--Confirmado-->
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>										
+										<xs:element name="EsPrincipal" type="xs:unsignedByte"/>
+										<xs:element name="EsAuge" type="xs:unsignedByte"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>			
+				<xs:element name="Actividades" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Actividad" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdActividad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="CodigoActividad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="TipoCodigoActividad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="NombreActividad" type="xs:string" minOccurs="1" maxOccurs="1"/>
+										<xs:element name="FechaActividad" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="CodigoProgramaFonasa" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="CodigoArancelFonasa" type="xs:string" minOccurs="0" maxOccurs="1"/>										
+										<xs:element name="CantidadActividad" type="xs:string" minOccurs="1" maxOccurs="1"/>									
+										<xs:element name="TecnicaIntervencion" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodigoTecnica" minOccurs="0" maxOccurs="1">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="0"/><!--No Aplica-->
+																<xs:enumeration value="1"/><!--Convencional-->
+																<xs:enumeration value="2"/><!--Endovascular-->
+																<xs:enumeration value="3"/><!--Videolaparoscópica-->
+																<xs:enumeration value="4"/><!--Endoscópica-->
+																<xs:enumeration value="5"/><!--Percutánea-->
+																<xs:enumeration value="6"/><!--Otras Técnicas-->
+																<xs:enumeration value="7"/><!--Microquirúrgica-->
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TipoCodigoTecnica" type="TipoCodificacion" minOccurs="0" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>														
+										<xs:element name="ProfesionalesPrestadores" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ProfesionalPrestador" minOccurs="0" maxOccurs="unbounded"><!--OK-->
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="RunProfesional" type="xs:string" minOccurs="1" maxOccurs="1"/>																
+																<xs:element name="NombresProfesional" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="PrimerApellidoProfesional" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="SegundoApellidoProfesional" type="xs:string" minOccurs="0" maxOccurs="1"/>																
+																<xs:element name="NombreTipoProfesional" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="CodigoTipoProfesional" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="CodigoLaborProfesional" type="xs:string" minOccurs="0" maxOccurs="1" />
+																<xs:element name="RutFacturacionProfesional" type="xs:string" minOccurs="0" maxOccurs="1"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="RutFacturacionGlobal" type="xs:string" minOccurs="0" maxOccurs="1"/>									
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Indicaciones" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IndicacionesGenerales" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>			
+				<xs:element name="Recetas" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Receta" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdReceta" type="xs:string"/>
+										<xs:element name="FechaGeneracion" type="xs:string"/>
+										<xs:element name="Estado" type="xs:string"/>
+										<xs:element name="TipoReceta" type="xs:string"/>
+										<xs:element name="Prescripcion" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="IdPrescripcion" type="xs:string"/>
+													<xs:element name="DescripcionPrescripcion" type="xs:string"/>
+													<xs:element name="IdArticulo" type="xs:string"/>
+													<xs:element name="DescripcionArticulo" type="xs:string"/>
+													<xs:element name="DosisUnitaria" type="xs:string"/>
+													<xs:element name="IdUnidad" type="xs:string"/>
+													<xs:element name="Intervalo" type="xs:string"/>
+													<xs:element name="TipoUnidadIntervalo" type="xs:string"/>
+													<xs:element name="Duracion" type="xs:string"/>
+													<xs:element name="TipoUnidadDuracion" type="xs:string"/>
+													<xs:element name="TotalRecetado" type="xs:string"/>
+													<xs:element name="Entregado" type="xs:unsignedByte"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="OrdenesExamenesLaboratorio" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OrdenExamenLaboratorio" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdOrdenExamenLaboratorio" type="xs:string"/>
+										<xs:element name="ExamanesLaboratorioSolicitados" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodigoExamenLaboratorio" type="xs:string"/>
+													<xs:element name="DescripcionExamenLaboratorio" type="xs:string"/>
+													<xs:element name="EstadoExamenLaboratorio" type="xs:string"/>
+													<xs:element name="ResultadosExamenLaboratorio" type="TypeFormulario" minOccurs="0"/>
+													<xs:element name="Observacion" type="xs:string" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="SolicitudesInterconsulta" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SolicitudInterconsulta" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IdSolicitudInterconsulta" type="xs:string"/>																				
+										<xs:element name="EspecialidadSolicitudInterconsulta" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodigoDEISEspecialidadSolicitud" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="DescripcionEspecialidadSolicitud" type="xs:string" minOccurs="1" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="EstablecimientoOrigen" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodigoDEISEstablecimientoOrigen" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="DescripcionEstablecimientoOrigen" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="RutJuridicoEstablecimientoOrigen" type="xs:string" minOccurs="0" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>										
+										<xs:element name="EstablecimientoDestino" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CodigoDEISEstablecimientoDestino" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="DescripcionEstablecimientoDestino" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="RutJuridicoEstablecimientoDestino" type="xs:string" minOccurs="0" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>										
+										<xs:element name="FundamentosClinicosSolicitudInterconsulta" type="xs:string"/>
+										<xs:element name="ExamenesRealizadosSolicitudInterconsulta" type="xs:string"/>
+										<xs:element name="ObservacionSolicitudInterconsulta" type="xs:string"/>
+										<xs:element name="PrioridadSolicitudInterconsulta" type="xs:unsignedByte"/>																				
+										<xs:element name="MotivoSolicitudInterconsulta" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="NombreMotivoSolicitud" type="xs:string" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="CodigoMotivoSolicitud" type="xs:string" minOccurs="1" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DiagnosticosSolicitudInterconsulta" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="DiagnosticoSolicitudInterconsulta"  minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CodigoDiagnostico" type="xs:string" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="TipoCodigoDiagnostico" type="TipoCodificacion" minOccurs="1" maxOccurs="1"/>
+																<xs:element name="DescripcionDiagnostico" type="xs:string" minOccurs="0" maxOccurs="1"/>
+																<xs:element name="EsAuge" type="xs:unsignedByte"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>										
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+				<xs:element name="Formularios" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Formulario" type="TypeFormulario" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:complexType name="TypeFormulario">
+		<xs:sequence>
+			<xs:element name="Id" type="xs:string"/>
+			<xs:element name="Nombre" type="xs:string"/>
+			<xs:element name="Categoria" type="TypeCategoria" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TypeCategoria">
+		<xs:sequence>
+			<xs:element name="Nombre" type="xs:string"/>
+			<xs:element name="Campo" type="TypeCampo" maxOccurs="unbounded"/>
+			<xs:element name="SubcategoriaNivel1" type="TypeSubCategoriaNivel1" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TypeSubCategoriaNivel1">
+		<xs:sequence>
+			<xs:element name="Nombre" type="xs:string"/>
+			<xs:element name="Campo" type="TypeCampo" maxOccurs="unbounded"/>
+			<xs:element name="SubcategoriaNivel2" type="TypeSubCategoriaNivel2" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TypeSubCategoriaNivel2">
+		<xs:sequence>
+			<xs:element name="Nombre" type="xs:string"/>
+			<xs:element name="Campo" type="TypeCampo" maxOccurs="unbounded"/>
+			<xs:element name="SubcategoriaNivel3" type="TypeSubCategoriaNivel3" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="TypeSubCategoriaNivel3">
+		<xs:sequence>
+			<xs:element name="Nombre" type="xs:string"/>
+			<xs:element name="Campo" type="TypeCampo" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TypeCampo">
+		<xs:sequence>
+			<xs:element name="Etiqueta" type="xs:string"/>
+			<xs:element name="Valor" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:simpleType name="TipoCodificacion">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CIE10"/><!--CIE-10-->
+			<xs:enumeration value="CIE9"/><!--CIE-9-->
+			<xs:enumeration value="LN"/><!--LOINC -->
+			<xs:enumeration value="NDA"/><!--NANDA-->
+			<xs:enumeration value="SCT"/><!--SNOMED Clinical Terms-->
+			<xs:enumeration value="L"/><!--Codificacion Local-->
+			<xs:enumeration value="99000"/><!--Aranceles FONASA-->
+			<xs:enumeration value="99001"/><!--Tabla de técnica quirurgica-->
+		</xs:restriction>
+	</xs:simpleType>	
+</xs:schema>

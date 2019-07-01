@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Topicos</title>
+	<meta charset="utf-8">
+	<meta name="author" content="pixelhint.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="css/owl.transitions.css"/>
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" type="text/css" href="css/animate.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/ajaxchimp.js"></script>
+	<script type="text/javascript" src="js/scrollTo.js"></script>
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/wow.js"></script>
+	<script type="text/javascript" src="js/parallax.js"></script>
+	<script type="text/javascript" src="js/nicescroll.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+    <script>
+function imagen(x){
+	switch(x){
+		case "TELEFÓNICA MÓVILES CHILE S.A.":
+			return "img/movistar.png";
+		break;
+		case "TELEFONICA MOVILES CHILE S.A.":
+			return "img/movistar.png";
+		break;
+		case "TRIBE MOBILE SPA":
+			return "img/tribe.png";
+		break;
+		case "CLARO CHILE S.A.":
+			return "img/claro.png";
+		break;
+		case "ENTEL PCS TELECOMUNICACIONES S.A.":
+			return "img/entel.png";
+		break;
+		case "NEXTEL S.A.":
+			return "img/nextel.png";
+		break;
+		case "SIN ASIGNAR":
+			return "img/x.png";
+		break;
+	}
+}
+function consultar(){
+	$('#resultado1').hide();
+	$('#resultado1').attr("src",'');
+	if($('.cajas').val().length <= 8){
+	$('#resultado2').html("CARGANDO : Espere un momento, PorFavor");
+	$.post( "soap.php", { celular: $('.cajas').val() })
+	  .done(function( data ) {
+			console.log(data);
+			var json = $.parseJSON(data);
+			if(json['estado']=="VALIDO"){
+				$('#resultado2').html(json['compania']);
+				$('#resultado1').attr("src",imagen(json['compania']));
+				$('#resultado1').fadeIn();
+				$('#resultado2').fadeIn();
+			}else{
+				$('#resultado2').html("No Existe");
+				$('#resultado1').attr("src",'img/xx.png');
+				$('#resultado1').fadeIn();
+				$('#resultado2').fadeIn();
+
+			}	
+	  });
+	}else{
+		alert("Excede los 8 digitos");
+		$('.cajas').val("");
+	}
+	
+}
+
+</script>
+</head>
+<body>
+	<section class="testimonials animated wow fadeIn" id="testimonials" data-wow-duration="2s">
+		<section class="sub_box">
+		<p class="cta_text animated wow fadeInDown">Ingrese Número Celular</p>
+			<input type="number" class="cajas" placeholder="Ingresa tu Celular"/><br>
+			<button type="submit" id="mc_submit" onClick="consultar()">
+				<i class="icon"></i>
+			</button><br>
+            <img src="" id="resultado1" style="display:none;"><br>
+   			 <p id="resultado2"></p>
+	</section>
+</body>
+</html>

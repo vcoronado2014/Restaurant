@@ -1,0 +1,698 @@
+﻿USE [RAYEN]
+GO
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0001]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0001] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0001]
+--**
+--** VER: 1.1.0.0
+--**
+--** DESCRIPCION: Inserta a tabla IURG_INGRESO_URGENCIA
+--** Ver 1.0.0.0 , 17-07-2012, Autor : Juan Carlos Villalobos
+--** Ver 1.0.0.1 , 03-12-2012, Autor : Felipe Nieto - Se agrega el campo INS_ID_EGRESO
+/*
+----------------------------------------------------------------------------------------------
+FECHA DE MODIFICACIÓN: 26/06/2019
+USUARIO DE MODIFICACIÓN: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN: SE AGREGA CAMPO TMA_ID
+-----------------------------------------------------------------------------------------------
+*/
+--/*-----------------------------------------------------------*
+ALTER procedure [dbo].[URG0001]
+@FECHA_HORA_INGRESO datetime = null,
+@FECHA_HORA_REGISTRO datetime = null,
+@MOTIVO_CONSULTA varchar(5000) = null,
+@PRIORIDAD int,
+@OTRO_ACCIDENTE varchar(500) = null,
+@ESTADO_INGRESO int,
+@NOD_ID_PROCEDENCIA int,	
+@MDL_ID int,
+@DAC_ID int,
+@TAU_ID int,
+@USP_ID int,
+@NOD_ID int,
+@FNP_ID_REGISTRADOR_INGRESO int,
+@FNP_ID_REGISTRADOR_EGRESO int,
+@OBSERVACION varchar(500) = null,
+@ES_CURACION_TRATAMIENTO smallint,
+@INS_ID_EGRESO int,
+@FNP_ID_POST_TTO int = null,
+@LUGAR_ACCIDENTE varchar(200)=null,
+@TMA_ID INT=0,
+@CORRELATIVO int OUTPUT,
+@O_ID int OUTPUT,
+@O_TID timestamp OUTPUT
+as
+begin
+
+
+
+declare @ano int = datepart(year, @FECHA_HORA_INGRESO)
+declare @numero int
+--declare @ano int = 2013, @nod_id int = 2411
+
+
+select @numero = CORRELATIVO from CIU_CORRELATIVO_INGRESO_URGENCIA where NOD_ID = @nod_id and ANO = @ano
+
+--select @numero
+if @numero is null
+begin	
+	set @numero = 1 
+	insert into CIU_CORRELATIVO_INGRESO_URGENCIA (NOD_ID, ANO, CORRELATIVO) values (@nod_id, @ano, @numero)
+end
+else 
+begin
+	set @numero += 1
+	update CIU_CORRELATIVO_INGRESO_URGENCIA set CORRELATIVO = @numero where NOD_ID = @nod_id and ANO = @ano
+end
+
+
+set @CORRELATIVO = @numero
+
+insert into IURG_INGRESO_URGENCIA
+(
+FECHA_HORA_INGRESO,
+FECHA_HORA_REGISTRO,
+MOTIVO_CONSULTA,
+PRIORIDAD,
+OTRO_ACCIDENTE,
+ESTADO_INGRESO,
+CORRELATIVO,
+NOD_ID_PROCEDENCIA,
+MDL_ID,
+DAC_ID,
+TAU_ID,
+USP_ID,
+NOD_ID,
+FNP_ID_REGISTRADOR_INGRESO,
+FNP_ID_REGISTRADOR_EGRESO,
+OBSERVACION,
+ES_CURACION_TRATAMIENTO,
+ELIMINADO,
+INS_ID_EGRESO,
+FNP_ID_POST_TTO,
+LUGAR_ACCIDENTE,
+TMA_ID
+)
+values
+(
+@FECHA_HORA_INGRESO,
+@FECHA_HORA_REGISTRO,
+@MOTIVO_CONSULTA,
+@PRIORIDAD,
+@OTRO_ACCIDENTE,
+@ESTADO_INGRESO,
+@CORRELATIVO,
+@NOD_ID_PROCEDENCIA,
+@MDL_ID,
+@DAC_ID,
+@TAU_ID,
+@USP_ID,
+@NOD_ID,
+@FNP_ID_REGISTRADOR_INGRESO,
+@FNP_ID_REGISTRADOR_EGRESO,
+@OBSERVACION,
+@ES_CURACION_TRATAMIENTO,
+0,
+@INS_ID_EGRESO,
+@FNP_ID_POST_TTO,
+@LUGAR_ACCIDENTE,
+@TMA_ID
+)
+SELECT @O_ID = scope_identity()
+SELECT @O_TID = TID FROM IURG_INGRESO_URGENCIA WHERE ID = @O_ID
+end
+GO
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0002]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0002] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0002]
+--**
+--** VER: 1.1.0.0
+--**
+--** DESCRIPCION: Actualiza datos tabla IURG_INGRESO_URGENCIA
+--** Ver 1.0.0.0 , 17-07-2012, Autor : Juan Carlos Villalobos
+--** Ver 1.0.0.1 , 03-12-2012, Autor : Felipe Nieto - Se agrega el campo INS_ID_EGRESO
+--/*-----------------------------------------------------------*
+/************************************************************************                              
+NOMBRE DEL PROCEDIMIENTO	:                               
+AUTOR						: 
+FECHA DE CREACI�N			:         
+BASE DE DATOS				:                              
+
+OBJETIVO					:
+
+FECHA DE MODIFICACI�N		:02/05/2017
+USUARIO DE MODIFICACI�N		:PQUEZADA
+MOTIVO DE MODIFICACI�N		:CAMBIO HORA MAGALLANES - REQ138285
+
+VISADO POR (QA)  			:   
+FECHA APROBACI�N QA 		:   
+COMENTARIOS QA     			:                             
+
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID             
+                              
+TABLAS INVOLUCRADAS 		:   
+
+***********************************************************************/
+ALTER procedure [dbo].[URG0002]
+@ID int,
+@FECHA_HORA_INGRESO datetime = null,
+@FECHA_HORA_REGISTRO datetime = null,
+@MOTIVO_CONSULTA varchar(5000) = null,
+@PRIORIDAD int,
+@OTRO_ACCIDENTE varchar(500) = null,
+@ESTADO_INGRESO int,
+@CORRELATIVO int,
+@NOD_ID_PROCEDENCIA int,
+@MDL_ID int,
+@DAC_ID int,
+@TAU_ID int,
+@USP_ID int,
+@NOD_ID int,
+@FNP_ID_REGISTRADOR_INGRESO int,
+@FNP_ID_REGISTRADOR_EGRESO int,
+@OBSERVACION varchar(500) = null,
+@ES_CURACION_TRATAMIENTO smallint,
+@INS_ID_EGRESO int,
+@FNP_ID_POST_TTO int = null,
+@TID timestamp,
+@LUGAR_ACCIDENTE varchar(200)=null,
+@TMA_ID int,
+@DIFERENCIA_HORA int,
+@O_TID timestamp OUTPUT
+as
+begin
+update IURG_INGRESO_URGENCIA
+set
+FECHA_HORA_INGRESO = @FECHA_HORA_INGRESO,
+FECHA_HORA_REGISTRO = @FECHA_HORA_REGISTRO,
+MOTIVO_CONSULTA = @MOTIVO_CONSULTA,
+PRIORIDAD = @PRIORIDAD,
+OTRO_ACCIDENTE = @OTRO_ACCIDENTE,
+ESTADO_INGRESO = @ESTADO_INGRESO,
+CORRELATIVO = @CORRELATIVO,
+NOD_ID_PROCEDENCIA = @NOD_ID_PROCEDENCIA,
+MDL_ID = @MDL_ID,
+DAC_ID = @DAC_ID,
+TAU_ID = @TAU_ID,
+USP_ID = @USP_ID,
+NOD_ID = @NOD_ID,
+FNP_ID_REGISTRADOR_INGRESO = @FNP_ID_REGISTRADOR_INGRESO,
+FNP_ID_REGISTRADOR_EGRESO = @FNP_ID_REGISTRADOR_EGRESO,
+OBSERVACION = @OBSERVACION,
+ES_CURACION_TRATAMIENTO = @ES_CURACION_TRATAMIENTO,
+INS_ID_EGRESO = @INS_ID_EGRESO,
+FNP_ID_POST_TTO = @FNP_ID_POST_TTO,
+FECHA_HORA_EGRESO = CASE WHEN @ESTADO_INGRESO IN (3,8,9,10,11,12) THEN dbo.GenerarHoraConZonaHoraria(@DIFERENCIA_HORA) ELSE NULL END,
+LUGAR_ACCIDENTE=@LUGAR_ACCIDENTE,
+TMA_ID = @TMA_ID
+where
+ID = @ID
+and TID = @TID
+
+if (@@rowcount = 0)
+    raiserror('Error de concurrencia', 16, 1, null, null);
+SELECT @O_TID = TID FROM IURG_INGRESO_URGENCIA WHERE ID = @ID
+end
+
+go
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0003]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0003] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0003]
+--**
+--** VER: 1.1.0.0
+--**
+--** DESCRIPCION: Obtener datos tabla IURG_INGRESO_URGENCIA por id
+--** Ver 1.0.0.0 , 17-07-2012, Autor : Juan Carlos Villalobos
+--** Ver 1.0.0.1 , 03-12-2012, Autor : Felipe Nieto - Se agrega el campo INS_ID_EGRESO
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*
+ALTER procedure [dbo].[URG0003]
+@ID int
+as
+begin
+  select
+    IURG.ID,
+    IURG.FECHA_HORA_INGRESO,
+    IURG.FECHA_HORA_REGISTRO,
+    IURG.MOTIVO_CONSULTA,
+    IURG.PRIORIDAD,
+    IURG.OTRO_ACCIDENTE,
+    IURG.ESTADO_INGRESO,
+    IURG.CORRELATIVO,
+    IURG.NOD_ID_PROCEDENCIA,
+    IURG.MDL_ID,
+    IURG.DAC_ID,
+    IURG.TAU_ID,
+    IURG.USP_ID,
+    IURG.NOD_ID,
+    IURG.FNP_ID_REGISTRADOR_INGRESO,
+    IURG.FNP_ID_REGISTRADOR_EGRESO,
+	IURG.OBSERVACION,
+    IURG.ES_CURACION_TRATAMIENTO,
+    IURG.INS_ID_EGRESO,
+    IURG.FNP_ID_POST_TTO,
+    IURG.TID,
+	IURG.LUGAR_ACCIDENTE,
+	IURG.TMA_ID
+  from
+     IURG_INGRESO_URGENCIA IURG
+  where
+    IURG.ID = @ID
+end
+go
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0061]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0061] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0061]
+--**
+--** VER: 1.1.0.0
+--**
+--** DESCRIPCION: Obtener datos tabla IURG_INGRESO_URGENCIA por ids
+--** Ver 1.0.0.0 , 10-08-2012, Autor : Felipe Nieto
+--** Ver 1.0.0.1 , 03-12-2012, Autor : Felipe Nieto - Se agrega el campo INS_ID_EGRESO
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*
+ALTER procedure [dbo].[URG0061]
+@IDS varchar(max)
+as
+begin
+  select
+    IURG.ID,
+    IURG.FECHA_HORA_INGRESO,
+    IURG.FECHA_HORA_REGISTRO,
+    IURG.MOTIVO_CONSULTA,
+    IURG.PRIORIDAD,
+    IURG.OTRO_ACCIDENTE,
+    IURG.ESTADO_INGRESO,
+    IURG.CORRELATIVO,
+    IURG.NOD_ID_PROCEDENCIA,
+    IURG.MDL_ID,
+    IURG.DAC_ID,
+    IURG.TAU_ID,
+    IURG.USP_ID,
+    IURG.NOD_ID,
+    IURG.FNP_ID_REGISTRADOR_INGRESO,
+    IURG.FNP_ID_REGISTRADOR_EGRESO,
+	IURG.OBSERVACION,
+    IURG.ES_CURACION_TRATAMIENTO,
+    IURG.INS_ID_EGRESO,
+    IURG.FNP_ID_POST_TTO,
+    IURG.TID,
+	IURG.LUGAR_ACCIDENTE,
+	IURG.TMA_ID
+  from
+     IURG_INGRESO_URGENCIA IURG
+     inner join (select * from dbo.OBTENER_ID(@IDS)) ids on ids.ID = IURG.ID
+
+end
+go
+
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0063]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0063] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0063]
+--**
+--** VER: 1.0.0.0
+--**
+--** DESCRIPCION: Obtener datos de IURG_INGRESO_URGENCIA en base a ID y NOD_ID
+--** Ver 1.0.0.0 , 13-03-2013, Autor : Pablo Serrano
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*
+
+ALTER procedure [dbo].[URG0063]
+(
+	@ID INT,
+	@NOD_ID INT
+)
+as 
+begin
+	select IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO, IURG.MOTIVO_CONSULTA, 
+		IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE, IURG.ESTADO_INGRESO, IURG.CORRELATIVO, 
+		IURG.NOD_ID_PROCEDENCIA, IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID, 
+		IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO, IURG.OBSERVACION, 
+		IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO, IURG.FNP_ID_POST_TTO, IURG.TID,LUGAR_ACCIDENTE , IURG.TMA_ID
+	from IURG_INGRESO_URGENCIA IURG where 
+	IURG.ID = @ID and IURG.NOD_ID = @NOD_ID and IURG.ELIMINADO = 0
+end
+go
+
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0064]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0064] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0064]
+--**
+--** VER: 1.0.0.0
+--**
+--** DESCRIPCION: Obtener datos de IURG_INGRESO_URGENCIA en base a ID, NOD_ID y USP_ID
+--** Ver 1.0.0.0 , 13-03-2013, Autor : Pablo Serrano
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*
+
+ALTER procedure [dbo].[URG0064]
+(
+	@ID INT,
+	@NOD_ID INT,
+	@USP_ID INT
+)
+as 
+begin
+	select IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO, IURG.MOTIVO_CONSULTA, 
+		IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE, IURG.ESTADO_INGRESO, IURG.CORRELATIVO, 
+		IURG.NOD_ID_PROCEDENCIA, IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID, 
+		IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO, IURG.OBSERVACION, 
+		IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO, iurg.FNP_ID_POST_TTO, IURG.TID, LUGAR_ACCIDENTE, IURG.TMA_ID
+	from IURG_INGRESO_URGENCIA IURG where 
+	IURG.ID = @ID and IURG.NOD_ID = @NOD_ID and USP_ID = @USP_ID and IURG.ELIMINADO = 0
+end
+
+
+go
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0065]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0065] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*  
+--** NOMBRE SISTEMA: Rayen  
+--**  
+--** NOMBRE DEL OBJETO: [URG0065]  
+--**  
+--** VER: 1.0.0.0  
+--**  
+--** DESCRIPCION: Obtener datos de IURG_INGRESO_URGENCIA en base a NOD_ID y USP_ID  
+--** Ver 1.0.0.0 , 13-03-2013, Autor : Pablo Serrano  
+--** Ver 1.0.0.1 , 09-11-2015, Autor : Rumina Morales, se agrega un campo de salida
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*  
+  
+ALTER procedure [dbo].[URG0065]  
+(  
+ @NOD_ID INT,  
+ @USP_ID INT  
+)  
+as   
+begin  
+ select IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO, IURG.MOTIVO_CONSULTA,   
+  IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE, IURG.ESTADO_INGRESO, IURG.CORRELATIVO,   
+  IURG.NOD_ID_PROCEDENCIA, IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID,   
+  IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO, IURG.OBSERVACION,   
+  IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO, IURG.FNP_ID_POST_TTO, IURG.TID, IURG.FECHA_HORA_EGRESO,LUGAR_ACCIDENTE, IURG.TMA_ID   
+ from IURG_INGRESO_URGENCIA IURG where   
+ IURG.NOD_ID = @NOD_ID and USP_ID = @USP_ID and IURG.ELIMINADO = 0  
+end  
+
+go
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0066]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0066] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0066]
+--**
+--** VER: 1.0.0.0
+--**
+--** DESCRIPCION: Obtener datos de IURG_INGRESO_URGENCIA en base a NOD_ID y PRIORIDAD
+--** Ver 1.0.0.0 , 13-03-2013, Autor : Pablo Serrano
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*
+
+ALTER procedure [dbo].[URG0066]
+(
+	@NOD_ID INT,
+	@PRIORIDAD INT
+)
+as 
+begin
+	select IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO, IURG.MOTIVO_CONSULTA, 
+		IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE, IURG.ESTADO_INGRESO, IURG.CORRELATIVO, 
+		IURG.NOD_ID_PROCEDENCIA, IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID, 
+		IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO, IURG.OBSERVACION, 
+		IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO, iurg.FNP_ID_POST_TTO, IURG.TID,LUGAR_ACCIDENTE, IURG.TMA_ID
+	from IURG_INGRESO_URGENCIA IURG where 
+	IURG.NOD_ID = @NOD_ID and PRIORIDAD = @PRIORIDAD and IURG.ELIMINADO = 0
+end
+go
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0067]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0067] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--/*-----------------------------------------------------------*
+--** NOMBRE SISTEMA: Rayen
+--**
+--** NOMBRE DEL OBJETO: [URG0067]
+--**
+--** VER: 1.0.0.0
+--**
+--** DESCRIPCION: Obtener datos de IURG_INGRESO_URGENCIA en base a NOD_ID y ESTADOS_INGRESO
+--** Ver 1.0.0.0 , 13-03-2013, Autor : Pablo Serrano
+/*
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+*/
+--/*-----------------------------------------------------------*
+
+ALTER procedure [dbo].[URG0067]
+(
+	@NOD_ID INT,
+	@ESTADOS_INGRESO VARCHAR(MAX)
+)
+as 
+begin
+	select IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO, IURG.MOTIVO_CONSULTA, 
+		IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE, IURG.ESTADO_INGRESO, IURG.CORRELATIVO, 
+		IURG.NOD_ID_PROCEDENCIA, IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID, 
+		IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO, IURG.OBSERVACION, 
+		IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO, iurg.FNP_ID_POST_TTO, IURG.TID,LUGAR_ACCIDENTE , IURG.TMA_ID
+	from IURG_INGRESO_URGENCIA IURG inner join (select ID from OBTENER_ID(@ESTADOS_INGRESO)) IDS on IDS.ID = IURG.ESTADO_INGRESO
+	where IURG.NOD_ID = @NOD_ID and IURG.ELIMINADO = 0
+		and
+	/*	si uno de los estados es -1 no se incluyen aquellos pacientes en espera que estén asignados a un box.	 */
+  case when -1 in (select ID from OBTENER_ID(@ESTADOS_INGRESO)) THEN
+ ( select count(1) from ASLA_ASIGNACION_LUGAR_ATENCION asla
+  inner join  ATEN_ATENCION  aten on asla.ATEN_ID =aten.ID and aten.ELIMINADO=0  and aten.IURG_ID=IURG.ID and asla.estado=1 ) ELSE 0 END= 0
+end
+go
+	IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[URG0094]') AND type = N'P') 
+	--Se crea encabezado vacio del SP en caso de ser nuevo
+	exec('CREATE PROCEDURE [dbo].[URG0094] AS BEGIN SET NOCOUNT ON; END')
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+/************************************************************************
+NOMBRE DEL PROCEDIMIENTO: URG0094
+AUTOR: Jose Alejandro Torres
+FECHA DE CREACIÓN: 27/04/2016
+BASE DE DATOS: RAYEN
+OBJETIVO: Obtiene todos los ingresos urgencia.
+FECHA DE MODIFICACIÓN: 
+USUARIO DE MODIFICACIÓN:  
+MOTIVO DE MODIFICACIÓN: 
+VISADO POR (QA): 
+FECHA APROBACIÓN QA: 
+COMENTARIOS QA: 
+VISADO POR (DBA): 
+FECHA APROBACIÓN DBA: 
+COMENTARIOS DBA: 
+----------------------------------------------------------
+FECHA DE MODIFICACIÓN		: 26/06/2019
+USUARIO DE MODIFICACIÓN		: VICTOR CORONADO
+MOTIVO DE MODIFICACIÓN		: SE AGREGA CAMPO TMA_ID   
+----------------------------------------------------------
+TABLAS INVOLUCRADAS: IURG_INGRESO_URGENCIA
+***********************************************************************/
+
+ALTER PROCEDURE [dbo].[URG0094]
+  @NOD_ID INT,
+  @HORAS_PASADO INT,
+  @FECHA_TOPE INT
+AS
+
+BEGIN
+  --SET @NOD_ID  = 2411
+  --SET @HORAS_PASADO = 8
+  --SET @FECHA_TOPE = 20150325
+
+  DECLARE @ENESPERA int
+  DECLARE @INICIADO int
+  DECLARE @COMPLETADO int
+  DECLARE @ALTA_ADMINISTRATIVA int
+  DECLARE @ALTA_SIN_ATENCION int
+  DECLARE @ALTA_POST_TTO int
+  DECLARE @COMPLETADO_TTO_CURACION int
+
+  DECLARE @FECHA_NOW int
+
+  SET @ENESPERA = 1
+  SET @INICIADO = 2
+  SET @COMPLETADO = 3
+  SET @ALTA_ADMINISTRATIVA = 10
+  SET @ALTA_SIN_ATENCION = 8
+  SET @ALTA_POST_TTO = 12
+  SET @COMPLETADO_TTO_CURACION = 11
+
+  SET @FECHA_NOW = CONVERT(VARCHAR(10),GETDATE(),112)
+
+  -- Fecha actual, se entregan ingresos en curso y cerrados en las ultimas @HORAS_PASADO horas
+  IF @FECHA_NOW = @FECHA_TOPE
+  BEGIN
+
+    SELECT IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO,
+      IURG.MOTIVO_CONSULTA, IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE,
+      IURG.ESTADO_INGRESO, IURG.CORRELATIVO, IURG.NOD_ID_PROCEDENCIA,
+      IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID,
+      IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO,
+      IURG.OBSERVACION, IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO,
+      IURG.FNP_ID_POST_TTO, IURG.TID,IURG.FECHA_HORA_EGRESO,IURG.LUGAR_ACCIDENTE, IURG.TMA_ID
+     
+    FROM IURG_INGRESO_URGENCIA IURG
+
+    WHERE  ELIMINADO = 0 AND IURG.NOD_ID = @NOD_ID
+      AND (
+        -- abiertas
+        IURG.ESTADO_INGRESO IN (@ENESPERA, @INICIADO, @ALTA_POST_TTO)
+        
+        OR (
+          (
+            -- cerradas de las ultimas @HORAS_PASADO horas
+            IURG.FECHA_HORA_EGRESO >= DATEADD(hh,-@HORAS_PASADO, GETDATE())
+            -- cerradas hoy (sino se pierden si pasan mas de las @HORAS_PASADO pero no ha cambiado el dia)
+            OR IURG.FECHA_HORA_EGRESO >= CONVERT(DATETIME, CONVERT(CHAR(8), @FECHA_TOPE))
+          )
+          AND IURG.ESTADO_INGRESO IN (@COMPLETADO, @ALTA_ADMINISTRATIVA, @ALTA_SIN_ATENCION, @COMPLETADO_TTO_CURACION)
+        )
+      )
+  
+  END --IF
+  -- otra fecha, se entregan los casos cerrados
+  ELSE
+  BEGIN
+
+    SELECT IURG.ID, IURG.FECHA_HORA_INGRESO, IURG.FECHA_HORA_REGISTRO,
+      IURG.MOTIVO_CONSULTA, IURG.PRIORIDAD, IURG.OTRO_ACCIDENTE,
+      IURG.ESTADO_INGRESO, IURG.CORRELATIVO, IURG.NOD_ID_PROCEDENCIA,
+      IURG.MDL_ID, IURG.DAC_ID, IURG.TAU_ID, IURG.USP_ID, IURG.NOD_ID,
+      IURG.FNP_ID_REGISTRADOR_INGRESO, IURG.FNP_ID_REGISTRADOR_EGRESO,
+      IURG.OBSERVACION, IURG.ES_CURACION_TRATAMIENTO, IURG.INS_ID_EGRESO,
+      IURG.FNP_ID_POST_TTO, IURG.TID,IURG.FECHA_HORA_EGRESO,IURG.LUGAR_ACCIDENTE, IURG.TMA_ID
+     
+    FROM IURG_INGRESO_URGENCIA IURG
+
+    WHERE IURG.ELIMINADO = 0 
+      AND IURG.NOD_ID = @NOD_ID
+      AND IURG.ESTADO_INGRESO IN (@COMPLETADO, @ALTA_ADMINISTRATIVA, @ALTA_SIN_ATENCION, @COMPLETADO_TTO_CURACION)
+      -- desde fecha tope 00:00
+      AND IURG.FECHA_HORA_EGRESO >= CONVERT(DATETIME, CONVERT(CHAR(8), @FECHA_TOPE))
+      -- hasta antes del dia siguiente al tope 00:00
+      AND IURG.FECHA_HORA_EGRESO < (CONVERT(DATETIME, CONVERT(CHAR(8), @FECHA_TOPE)) + 1)
+
+  END --ELSE
+
+END
+

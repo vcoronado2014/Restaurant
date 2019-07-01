@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="../estilos/login.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+   	<!-- javascript -->
+    <script src="../Javascript/jquery-1.11.3.min.js"></script>
+    <script src="../Javascript/knockout-3.4.1.js"></script>
+    <script src="../Javascript/moment.js"></script>
+    <script src="../app_script/buscador.js"></script>
+	<script src="const.js?v=2.3"></script>
+</head>
+<body id="principal">
+    <div class="header">
+
+        <strong><a class="enlace" href="#">PORTAL CLÍNICO</a></strong>
+        <button type="button" class="btn  derecha" onclick="CerrarSesion()">Cerrar Sesión</button>
+        <a href="#" class="derecha enlace"><i class="far fa-clock"></i>&nbsp;<span data-bind="text: frmFecha"></span></a>
+        <a href="#" class="derecha enlace"><i class="fas fa-user-circle"></i>&nbsp;<span data-bind="text: frmNombreUsuario"></span></a>
+     </div>
+     
+     
+     <div class="tarjeta text-white mb-3 text-center" style="max-width: 18.5rem;">
+       <div class="card-body">
+         <p class="card-text">Ingrese el RUN a consultar </p>
+       </div>
+     </div>
+     
+     
+     <div class="cajaRun">
+        <section>
+            <input class="main-form" type="text" name="username" id="txtRun" placeholder="26642567K"/>
+            <button class="btn btn-block buscar" data-bind="click: buscar">Buscar</button>
+        </section>
+     </div>
+     
+     <div class="publicidad text-center text-white">
+        El formato del Run a consultar es sin puntos ni guiones.
+        </div>
+          
+</body>
+</html>
+

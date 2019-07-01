@@ -1,0 +1,9 @@
+{
+  "BASE_PATH": "",
+  "SCRIPTS": "/scripts",
+  "DEBUG": false,
+  "TIME_ZONE": "-03:00",
+  "TIME_LIMIT_PATIENT_SESSION": "30",
+  "AGENDA_API_BASE": "http://172.16.0.121:1416/api",
+  "REPORTS_BASE": "http://172.16.0.169:8081/jasperserver/rest_v2/reports/"
+}

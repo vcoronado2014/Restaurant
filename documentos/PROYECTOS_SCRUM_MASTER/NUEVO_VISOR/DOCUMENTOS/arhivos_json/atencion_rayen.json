@@ -1,0 +1,402 @@
+{
+  "id": 226978464,
+  "integrationName": "RayenCL",
+  "date": "2017-11-29T03:00:00.000Z",
+  "type": "Consulta ambulatoria (APS)",
+  "service": "",
+  "detailType": "CONTROL A PCTE. CRONICO",
+  "healthCareCenter": "sin información",
+  "specialty": "",
+  "episodeStatus": "Completa",
+  "professional": {
+    "type": "Médico",
+    "name": "Andaur Estévez Carolina"
+  },
+  "data": {
+    "activities": [ "Control de Salud Cardiovascular", "Consulta Otras Morbilidades" ],
+    "alertFactors": [],
+    "anamnesis": [
+      {
+        "text": "CCV\r\n\r\nLo primero que pone en la mesa, trat de disfx erectil.\r\nindago en relacion de pareja, aparentemente sin conflictos.",
+        "history": "Antecedentes Morbido\r\n- HTA crónico\r\n- Tabaquismo (10 -15 cigarros diarios porlo menos hace 40 años. \r\n- Hemorragia digestiva en estudio,  EDA pdte, no ha vuelto a presentar sangrado.\r\n\r\nPCte poco adherente a tto. \r\n\r\nFarmaco\r\n- LST 1-0-1\r\n- AAS 100mg\r\n- ATV 40mg (no lo toma)\r\n- Carvedilol 12.5 1/2-0-0  (no lo toma)\r\n\r\nTABACO: 10 cig/ dia+ 2 cajetillas los viernes.\r\n\r\nConsume OH una o dos veces por semana, con un amigo 3/4 botella de pisco, pareja quien lo acompaña refiere que es bebedor habitual + Coca cola normal.\r\n---------------------------------------------------------------------------\r\nHace 4 meses se incendia su casa, sin apoyo municpial.\r\n\r\nCARDIOVASCULAR\r\nSe ha sentido bien, sin síntomas cardiovasculares. \r\n\r\nSÍNTOMAS DE DOB:\r\nPolidipsia/poliuria/polifagi no\r\nAngina (-), disnea (-), ortopnea (-), edema (-), claudicación (-).\r\nOtra sintomatologí (-)\r\n\r\nBuenas condiciones generales\r\nHidatado, bien perfundido. \r\nSoplos carotideo (-) \r\nCardio: RR2T sin soplos\r\nPulmonar MP (+), sin ruidos agregados\r\nAbdomen: Blando, indoloro. RHA (+) no palpo masas\r\nEEII: Pulsos presentes, edemas\r\nUña sanas."
+      }
+    ],
+    "diagnoses": [ "Impotencia de origen orgánico (Sospecha)", "Hipertensión esencial (primaria) (Confirmada)" ],
+    "emergencyRoomDischargeReport": [],
+    "examinationOrder": [],
+    "examinations": [],
+    "forms": [
+      {
+        "Control Cardiovascular": [
+          {
+            "Control Cardiovascular": {
+              "fields": {},
+              "subCategories": [
+                {
+                  "Antecedentes Vitales": {
+                    "fields": {
+                      "Peso (Kg)": "95,79999999",
+                      "Talla (cm)": 178,
+                      "I.M.C.": "30,2360813",
+                      "Estado Nutricional": "Obesidad",
+                      "Circunferencia de Cintura (cm)": 94,
+                      "Presión Arterial (mmHg)": "154/84",
+                      "Presión Arterial de Pie (mm/Hg)": "158/89",
+                      "Pulso (Pulsos/Minutos)": 62
+                    },
+                    "subCategories": [
+                      {
+                        "Complicaciones": {
+                          "fields": {
+                            "¿Ha presentado IAM?": "No",
+                            "¿Ha presentado AVE?": "No",
+                            "En Tratamiento Farmacologico": "Estatinas",
+                            "Ceguera Establecida": "No",
+                            "¿Amputación debida a DM?": "No",
+                            "¿Retinopatía?": "No",
+                            "¿Neuropatía?": "No",
+                            "¿Hipertrofia Ventricular Izquierda?": "No",
+                            "Enfermedad Renal Crónica": "No",
+                            "Pertenece a grupo de autoayuda": "No"
+                          },
+                          "subCategories": []
+                        },
+                        "$$hashKey": "object:1089"
+                      },
+                      {
+                        "Otros Antecedentes": {
+                          "fields": {
+                            "Personas con enfemedad lipídica genetica": "No",
+                            "Cifras de P/A elevadas en forma permanente con una PAS >= 160-170 y/o PAD >= 100-105 mmHg": "No",
+                            "Personas con diabetes y nefropatía diabética establecida o diabetes y otra enfermedad renal.": "No",
+                            "Hipertensión arterial refractaria": "No"
+                          },
+                          "subCategories": []
+                        },
+                        "$$hashKey": "object:1090"
+                      },
+                      {
+                        "Otros Factores de Riesgo cardiovascular (suman 5 puntos)": {
+                          "fields": {
+                            "Antecedentes familiares de cardiopatía coronaria o ataque cerebral prematuro en familiar de primer grado": "No",
+                            "Concentraciones elevadas de proteína C-rectiva,fibrinógeno homocisteína,apolipoproteína B o Lp(a),hiperglicemia  en ayunas o intolerancia a la glucosa": "No",
+                            "Albuminuria moderada (previamente llamada microalbuminuria) en diabeticos": "No"
+                          },
+                          "subCategories": []
+                        },
+                        "$$hashKey": "object:1091"
+                      },
+                      {
+                        "Habitos": {
+                          "fields": {
+                            "EMPA ¿Usted Fuma?": "Si",
+                            "¿Sedentarismo?": "Si",
+                            "¿Adherencia a Dieta?": "No",
+                            "¿Adherencia a Medicamentos?": "Si",
+                            "Actividad Física": "No"
+                          },
+                          "subCategories": []
+                        },
+                        "$$hashKey": "object:1092"
+                      },
+                      {
+                        "Ingreso Crónico": {
+                          "fields": {
+                            "¿Es HTA?": "Si",
+                            "Estado": "Ingreso",
+                            "¿Es DM2?": "No",
+                            "¿Tratamiento de Insulina?": "No",
+                            "¿Es Dislipidémico?": "No",
+                            "¿Tiene Antecedentes Enf. Cardiovascular Aterosclerótica?": "No",
+                            "¿Tiene Antecedentes de Tabaquismo?": "Si"
+                          },
+                          "subCategories": []
+                        },
+                        "$$hashKey": "object:1093"
+                      }
+                    ]
+                  },
+                  "$$hashKey": "object:874"
+                }
+              ]
+            }
+          },
+          {
+            "Examen": {
+              "fields": {
+                "Hematocrito": 44,
+                "Hemoglobina (Hb)": "15,09999999",
+                "VHS (mm/hr)": 7,
+                "Glicemia (mg/dl)": 107,
+                "Creatinina": "1,1",
+                "Urea": "45,39999999",
+                "N. Ureico": "21,19999999",
+                "Acido Urico  (mg/dl)": "5,4",
+                "Colesterol Total (mg/dL)": 176,
+                "Colesterol HDL (mg/dl)": "29,1",
+                "Triglicéridos (mg/dL)": 210,
+                "Colesterol LDL (mg/dl)": "104,9",
+                "Sodio": 139,
+                "Potasio": "4,59999999",
+                "Cloro": 102,
+                "Edema": "No",
+                "Observaciones": "cmed 10/17"
+              },
+              "subCategories": [
+                {
+                  "Electrocardiograma": {
+                    "fields": {
+                      "Fecha Y Hora": "15-04-2015 0:00:00",
+                      "Electrocardiograma": "Normal",
+                      "Obs. Eléctrocardiograma": "pedido, nsp a la hora."
+                    },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:917"
+                },
+                {
+                  "Pruebas Tiroideas": {
+                    "fields": { "Hormona Tiroestimulante TSH (uIU/ml)": "2,68" },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:918"
+                }
+              ]
+            }
+          },
+          {
+            "Riesgo Cardiovascular": {
+              "fields": { "Riesgo Cardiovascular": "Alto" },
+              "subCategories": []
+            }
+          },
+          {
+            "Riesgo Cardiovascular por Framingham": {
+              "fields": {
+                "Resultado Framingham": 7,
+                "Riesgo Coronario a 10 años": "Moderado"
+              },
+              "subCategories": []
+            }
+          },
+          {
+            "Próximo Control": {
+              "fields": { "Fecha Próximo Control": "28-11-2018 0:00:00" },
+              "subCategories": []
+            }
+          }
+        ],
+        "Ingreso de Resultados de Examenes": [
+          {
+            "Hematología": {
+              "fields": {},
+              "subCategories": [
+                {
+                  "Hemograma  y VHS": {
+                    "fields": {
+                      "Hematocrito": 44,
+                      "Hemoglobina (Hb)": "15,09999999"
+                    },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:943"
+                },
+                {
+                  "Pruebas Tiroideas": {
+                    "fields": {
+                      "Hormona Tiroestimulante TSH (uIU/ml)": "2,68",
+                      "Fecha Hormona Tiroestimulante TSH": "12-10-2017 0:00:00",
+                      "Hormona T4L": "1,26"
+                    },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:944"
+                },
+                {
+                  "Factor Reumotoideo": {
+                    "fields": {
+                      "Factor Reumatoideo (Cualitativo)": "Negativo/No Aglutinación",
+                      "Fecha Factor Reumatoideo": "12-10-2017 0:00:00"
+                    },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:945"
+                }
+              ]
+            }
+          },
+          {
+            "Sección Bioquímicos": {
+              "fields": {
+                "Colesterol Total (mg/dL)": 176,
+                "Colesterol HDL (mg/dl)": "29,1",
+                "Creatinina": "1,1",
+                "Glicemia (mg/dl)": 107,
+                "Triglicéridos (mg/dL)": 210
+              },
+              "subCategories": [
+                {
+                  "Perfil Bioquímico": {
+                    "fields": {
+                      "Acido Urico  (mg/dl)": "5,4",
+                      "Cloro": 102
+                    },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:972"
+                }
+              ]
+            }
+          },
+          {
+            "Sección Orinas": {
+              "fields": {},
+              "subCategories": [
+                {
+                  "Orina Completa": {
+                    "fields": {},
+                    "subCategories": [
+                      {
+                        "Funcion Renal": {
+                          "fields": { "Valor VFG": "73,59999999" },
+                          "subCategories": []
+                        },
+                        "$$hashKey": "object:1154"
+                      }
+                    ]
+                  },
+                  "$$hashKey": "object:979"
+                }
+              ]
+            }
+          },
+          {},
+          {
+            "Electrocardiograma": {
+              "fields": {
+                "Electrocardiograma": "Normal",
+                "Fecha Y Hora": "15-04-2015 0:00:00",
+                "Obs. Eléctrocardiograma": "pedido, nsp a la hora."
+              },
+              "subCategories": []
+            }
+          },
+          {}
+        ],
+        "Detección y Prevención de la Progresión de la Enfermedad Renal Crónica": [
+          {
+            "Factores de Riesgo": {
+              "fields": {
+                "¿Es DM2?": "No",
+                "¿Es HTA?": "Si",
+                "Enfermedad Cardiovascular": "No",
+                "Antecedentes Nefrourológicos": "No",
+                "Familiares Primer grado con ERC": "No"
+              },
+              "subCategories": []
+            }
+          },
+          {
+            "Antecedentes": {
+              "fields": {
+                "Peso (Kg)": "95,79999999",
+                "Presión Arterial (mmHg)": "154/84",
+                "Creatinina": "1,1"
+              },
+              "subCategories": []
+            }
+          },
+          {
+            "Velocidad Filtración Glomerular (VFG)": {
+              "fields": {
+                "Informada por el laboratorio": "No",
+                "Valor VFG": "73,59999999",
+                "VFG Calculada": "101,6060606"
+              },
+              "subCategories": []
+            }
+          },
+          {
+            "Conducta a seguir": {
+              "fields": {},
+              "subCategories": [
+                {
+                  "Paciente No Diabético": {
+                    "fields": { "VFG >= 60 ml/min  y alteraciones examen de orina": "Si" },
+                    "subCategories": []
+                  },
+                  "$$hashKey": "object:1022"
+                }
+              ]
+            }
+          },
+          {
+            "Diagnóstico": {
+              "fields": { "Diagnóstico": "Sin enfermedad renal crónica." },
+              "subCategories": []
+            }
+          },
+          {
+            "Conducta Final": {
+              "fields": { "Conducta Final": "Control en Programa de Salud Cardiovascular en atención primaria." },
+              "subCategories": []
+            }
+          }
+        ],
+        "Examen Físico General": [
+          {
+            "Examen Físico General": {
+              "fields": {
+                "Presión Arterial (mmHg)": "154/84",
+                "Pulso (Pulsos/Minutos)": 62,
+                "Talla (cm)": 178,
+                "Peso (Kg)": "95,79999999",
+                "I.M.C.": "30,2360813",
+                "Circunferencia de Cintura (cm)": 94,
+                "Estado Nutricional": "Obesidad"
+              },
+              "subCategories": []
+            }
+          }
+        ]
+      }
+    ],
+    "gynecologicReport": [],
+    "indications": [ "Ordeno pscv 2018 Abril nutri con nuevo perfil", "Insisito en reduccion de oh\r", "Educo en dsimnicion de CHO\r", "Testo ultra a probar, farmaco de fito terapia.\r", "Control medico en 30 dias post uso de testo ultra.\r", "A contrl de presion por ajuste de farmacos." ],
+    "interclinicalRequestHistory": [],
+    "interclinicalRequests": [
+      {
+        "NombreEspecialidadSolicitudInterconsulta": "Urología",
+        "Estado": "Aceptada por establecimiento destino",
+        "NombreEstablecimientoOrigen": "CECOSF Elena Caffarena",
+        "PrioridadSolicitudInterconsulta": 3,
+        "NombreEstablecimientoDestino": "sin información",
+        "MotivoSolicitudInterconsulta": "",
+        "IdSolidicudInterconsulta": 6854145,
+        "ExamenesRealizadosSolicitudInterconsulta": "",
+        "RutPacienteSolicitudInterconsulta": 70479591,
+        "FundamentosClinidosSolicitudInterconsulta": "Actualmente al menos 6 meses de disfuncion erectil importante, nota asociado a baja libido, estresor importante por incendo de la vivienda hace 6 meses con perdida del patrimonio del hogar.\r\nHa usado sildenafil 50 mgs sin resultados, 100mgs con resultado parcial, escasa duracion de ereccion y sin tener rs  completa.",
+        "CodigoDEISEstablecimientoOrigen": "00-037",
+        "ObservacionSolicitudInterconsulta": "N48.4 IMPOTENCIA DE ORIGEN ORGANICO\r\n\r\n\r\ncelular: 9-75637915",
+        "CodigoDEISEstablecimientoDestino": "sin información"
+      }
+    ],
+    "medicalDischargeReport": [],
+    "medicalEvolution": [],
+    "medicines": [],
+    "nurseDischargeReport": [],
+    "preanesthesiaReport": [],
+    "prescriptions": [ "Atorvastatina Comprimidos Recubiertos 20 Mg : 2 Comprimidos cada 24 horas por 12 meses de la Receta Nº 207091237", "Losartan Potasico Comprimidos Recubiertos 50 Mg : 1 Comprimido cada 12 horas por 12 meses de la Receta Nº 207091237", "Amlodipino Comprimidos 5 Mg : 1 Comprimido cada 24 horas por 12 meses de la Receta Nº 207091237" ],
+    "surgeriesPerformed": [],
+    "surgicalReport": [],
+    "vaccines": [],
+    "examRequests": []
+  },
+  "_isDetailObtained": true,
+  "_isSelected": false,
+  "speciality": "Medicina Familiar",
+  "primaryDiagnosis": "Impotencia de origen orgánico (Sospecha)",
+  "uuid": "226978464-RayenCL-undefined",
+  "_searchableValues": [ "CONTROL A PCTE. CRONICO", "Completa", "sin informacion", "Andaur Estevez Carolina", "Medico", "Control de Salud Cardiovascular", "Consulta Otras Morbilidades", "Atorvastatina Comprimidos Recubiertos 20 Mg : 2 Comprimidos cada 24 horas por 12 meses de la Receta Nº 207091237", "Losartan Potasico Comprimidos Recubiertos 50 Mg : 1 Comprimido cada 12 horas por 12 meses de la Receta Nº 207091237", "Amlodipino Comprimidos 5 Mg : 1 Comprimido cada 24 horas por 12 meses de la Receta Nº 207091237", "Impotencia de origen organico (Sospecha)", "Hipertension esencial (primaria) (Confirmada)", "Urologia", "Ordeno pscv 2018 Abril nutri con nuevo perfil", "Insisito en reduccion de oh\r", "Educo en dsimnicion de CHO\r", "Testo ultra a probar, farmaco de fito terapia.\r", "Control medico en 30 dias post uso de testo ultra.\r", "A contrl de presion por ajuste de farmacos." ],
+  "_inProgress": false
+}

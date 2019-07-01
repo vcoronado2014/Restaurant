@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    Votaciones Comité Paritario Saydex Ltda.
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Bienvenido! [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <table style="width:100%;">
+                    <tr>
+                        <td>
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" 
+                                IncludeStyleBlock="false" Orientation="Horizontal" Font-Bold="True" 
+                                ForeColor="White">
+                    <DynamicHoverStyle ForeColor="White" />
+                    <DynamicMenuItemStyle ForeColor="White" />
+                    <DynamicSelectedStyle ForeColor="White" />
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Inicio"/>
+                        <asp:MenuItem NavigateUrl="~/Documentos/Ley.aspx" Text="Infórmese sobre la Ley" 
+                            Value="Infórmese sobre la Ley"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Documentos/Documentos.aspx" Text="Documentos" 
+                            Value="Documentos"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Votaciones/SolicitudKey.aspx" 
+                            Text="Solicitud/Verificación de Key" Value="Solicitud/Verificación de Key">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/comovotar.aspx" Text="Como votar" 
+                            Value="Como votar"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Votaciones/Inicio.aspx" Text="Votar" Value="Votar">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Administracion/Reportes.aspx" 
+                            Text="Comité Paritario" Value="Comité Paritario"></asp:MenuItem>
+                    </Items>
+                    <StaticMenuItemStyle BackColor="#003366" BorderColor="White" 
+                        BorderStyle="Solid" BorderWidth="1px" ForeColor="White" HorizontalPadding="4px" 
+                        ItemSpacing="4px" VerticalPadding="4px" />
+                    <StaticMenuStyle HorizontalPadding="4px" VerticalPadding="4px" />
+                </asp:Menu>
+                        </td>
+                        <td>
+                            <asp:Label ID="lblNombre" runat="server" ForeColor="White"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
+

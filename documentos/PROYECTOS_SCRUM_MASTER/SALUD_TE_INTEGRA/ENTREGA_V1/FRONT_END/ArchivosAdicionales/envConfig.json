@@ -1,0 +1,17 @@
+{
+  "SCRIPTS": "/app/scripts",
+  "DEBUG": true,
+  "URL_API_ENDPOINT": "http://172.16.0.241/Saludteintegra.webapi/api/",
+  "SESSION_TOKEN_ENDPOINT": "https://prepplataformadeintegraciones.saludenred.cl:8201/VISOR_CL/ObtenerTokenSesion",
+  "INTEGRATIONS": {
+    "RayenCL": {
+      "SUMMARY": "https://prepplataformadeintegraciones.saludenred.cl:8095/FUC_REST/ObtenerResumenHistorialClinicoPrimaria",
+      "DETAIL": "https://prepplataformadeintegraciones.saludenred.cl:8097/FUC_REST/ObtenerDetalleHistorialClinicoPrimaria"
+    },
+    "FlorenceCL": {
+      "SUMMARY": "https://prepplataformadeintegraciones.saludenred.cl:8096/FUC_REST/ObtenerResumenHistorialClinicoSecundaria",
+      "DETAIL": "https://prepplataformadeintegraciones.saludenred.cl:8099/FUC_REST/ObtenerDetalleHistorialClinicoSecundaria"
+    }
+  },
+  "LANG": "es-cl"
+}

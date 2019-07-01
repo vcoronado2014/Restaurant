@@ -1,0 +1,1 @@
+ssh -i credentials.pem ubuntu@54.161.89.199

@@ -1,0 +1,58 @@
+{
+  "AutentificacionUsuario": {
+    "NombreUsuario": "vcoronado",
+    "Password": "MQAyADMANAA1ADYANwA=",
+    "FechaCreacion": "23-02-2018 00:00",
+    "EcolId": 1,
+    "RolId": 1,
+    "Id": 1,
+    "Activo": 1,
+    "Eliminado": 0
+  },
+  "Persona": {
+    "Nombres": "Victor",
+    "ApellidoPaterno": "Coronado",
+    "ApellidoMaterno": "Alarcon",
+    "Run": "",
+    "CorreoElectronico": "vcoronado.alarcon@gmail.com",
+    "TelefonoContactoUno": "",
+    "TelefonoContactoDos": "",
+    "AusId": 1,
+    "Id": 1,
+    "Activo": 1,
+    "Eliminado": 0
+  },
+  "Rol": {
+    "Nombre": "Super Administrador",
+    "Descripcion": "Todo el Sistema",
+    "Id": 1,
+    "Activo": 1,
+    "Eliminado": 0
+  },
+  "EntidadContratante": {
+    "RazonSocial": "Rayen Salud",
+    "FechaModificacion": "0001-01-01T00:00:00",
+    "FechaInicioContrato": "2018-01-01T00:00:00",
+    "RegId": 13,
+    "ComId": 30,
+    "Direccion": "prueba",
+    "RestoDireccion": " ",
+    "NumeroDireccion": "480",
+    "Id": 1,
+    "Activo": 1,
+    "Eliminado": 0
+  },
+  "ParametrosEcol": {
+    "EcolId": 1,
+    "EnviaCorreo": 1,
+    "LogoUno": "",
+    "LogoDos": "",
+    "MuestraLogoUno": 0,
+    "MuestraLogoDos": 0,
+    "TopeUsuarios": 100,
+    "FechaTerminoContrato": "11-03-2019",
+    "Id": 1,
+    "Activo": 1,
+    "Eliminado": 0
+  }
+}

@@ -1,0 +1,382 @@
+{
+  "id": "BLSN610915913001-UU008",
+  "integrationName": "FlorenceCL",
+  "date": "2017-10-22T03:00:00.000Z",
+  "type": "Urgencias",
+  "service": null,
+  "detailType": "Urgencias",
+  "healthCareCenter": "H. Dr. Alejandro del Río",
+  "specialty": "URGENCIA",
+  "episodeStatus": "Cerrado",
+  "professional": {
+    "type": "URGENCIA",
+    "name": "JUAN CARLOS BERRIOS DIAZ"
+  },
+  "data": {
+    "              ": [ "Instalación via venosa", "KTR instrumental. (Flutter, triflo, válvula IMT).", "Toma de exámenes sanguíneos", "TOMA MUESTRA CULTIVO SECRECION NASOFARINGEA (IFI)" ],
+    "alertFactors": [
+      {
+        "Periodo": "Desde 22-10-2017",
+        "Clasificacion": "Diagnósticos - BRONQUITIS AGUDA",
+        "IdAntecedentesAlertaFactores": "BLSN610915913001A29396  2           20171022",
+        "IdEpisodio": "BLSN610915913001-UU008"
+      }
+    ],
+    "anamnesis": [ { "text": "----RELATA  DESDE  HACE  3  DIAS,      TOS  PRODUCTIVA  ABUNDANTE , SENS  FEBRIL  HASTA  39  AX , MIALGIAS,  DOLOR  DORSO ---ADEMAS  DOLOR  TORAXICO  IRRADIADO  A  DORSO  2  DIAS  DE  EVOLUCION \r\nALERG0 NO \r\nAMORB=  HTA ----TBQ  15  CIG  DIARIOS  \r\nSOLICITO" } ],
+    "diagnoses": [ "BRONQUITIS AGUDA" ],
+    "emergencyRoomDischargeReport": [],
+    "examinationOrder": [],
+    "examinations": [],
+    "forms": [],
+    "gynecologicReport": [],
+    "indications": [],
+    "interclinicalRequestHistory": [],
+    "interclinicalRequests": [],
+    "medicalDischargeReport": [],
+    "medicalEvolution": [],
+    "medicines": [],
+    "nurseDischargeReport": [],
+    "preanesthesiaReport": [],
+    "prescriptions": [],
+    "surgeriesPerformed": [],
+    "surgicalReport": [],
+    "vaccines": [],
+    "examRequests": [
+      {
+        "FechaHoraRegistro": "20171022 15:52",
+        "ExamenesSolicitados": [
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Acido láctico",
+            "Observacion": "",
+            "CodigoExamen": 93,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 93,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 93,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Acido láctico"
+            },
+            "$$hashKey": "object:319"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Creatinina",
+            "Observacion": "",
+            "CodigoExamen": 111,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 111,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 111,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Creatinina"
+            },
+            "$$hashKey": "object:320"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "CREATINQUINASA CK - MB  MIOCARDICA",
+            "Observacion": "",
+            "CodigoExamen": 540,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 540,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 540,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "CREATINQUINASA CK - MB  MIOCARDICA"
+            },
+            "$$hashKey": "object:321"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "CREATINQUINASA CK - TOTAL",
+            "Observacion": "",
+            "CodigoExamen": 541,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 541,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 541,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "CREATINQUINASA CK - TOTAL"
+            },
+            "$$hashKey": "object:322"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Cuerpos cetónicos",
+            "Observacion": "",
+            "CodigoExamen": 417,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 417,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 417,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Cuerpos cetónicos"
+            },
+            "$$hashKey": "object:323"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Electrolitos plasmáticos (sodio, potasio, cloro) c/u",
+            "Observacion": "",
+            "CodigoExamen": 120,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 120,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 120,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Electrolitos plasmáticos (sodio, potasio, cloro) c/u"
+            },
+            "$$hashKey": "object:324"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Glicemia",
+            "Observacion": "",
+            "CodigoExamen": 135,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 135,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 135,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Glicemia"
+            },
+            "$$hashKey": "object:325"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Hemograma (incluye recuentos de leucocitos y eritrocitos, hemoglobina, hematocrito,etc.)",
+            "Observacion": "",
+            "CodigoExamen": 45,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 45,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 45,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Hemograma (incluye recuentos de leucocitos y eritrocitos, hemoglobina, hematocrito, fórmula leucocitaria, características de los elementos figurados y velocidad de eritrosedimentación)"
+            },
+            "$$hashKey": "object:326"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "NITROGENO UREICO Y/O UREA, EN SANGRE",
+            "Observacion": "",
+            "CodigoExamen": 555,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 555,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 555,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "NITROGENO UREICO Y/O UREA, EN SANGRE"
+            },
+            "$$hashKey": "object:327"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Perfil Hepático (incluye tiempo de protrombina, bilirrubina total y conjugada, fosfatasas alcalinas totales, GGT, transaminasas GOT/AST y GPT/ALT)",
+            "Observacion": "",
+            "CodigoExamen": 158,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 158,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 158,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Perfil Hepático (incluye tiempo de protrombina, bilirrubina total y conjugada, fosfatasas alcalinas totales, GGT, transaminasas GOT/AST y GPT/ALT)"
+            },
+            "$$hashKey": "object:328"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "PH-GASES EN SANGRE",
+            "Observacion": "",
+            "CodigoExamen": 462,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 462,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 462,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "PH-GASES EN SANGRE"
+            },
+            "$$hashKey": "object:329"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Screening de coagulación INR",
+            "Observacion": "",
+            "CodigoExamen": 442,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 442,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 442,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Screening de coagulación INR"
+            },
+            "$$hashKey": "object:330"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Screening de coagulación TP",
+            "Observacion": "",
+            "CodigoExamen": 82,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 82,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 82,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Screening de coagulación TP"
+            },
+            "$$hashKey": "object:331"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Screening de coagulación TTPK",
+            "Observacion": "",
+            "CodigoExamen": 507,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 507,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 507,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Screening de coagulación TTPK"
+            },
+            "$$hashKey": "object:332"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "Troponina",
+            "Observacion": "",
+            "CodigoExamen": 115,
+            "IdOrdenExamen": 111951710220066,
+            "ResultadosExamen": {
+              "CodigoResultado": 115,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 115,
+              "IdOrdenExamen": 111951710220066,
+              "DescripcionResultado": "Troponina"
+            },
+            "$$hashKey": "object:333"
+          }
+        ],
+        "IdOrdenExamen": 111951710220066,
+        "IdEpisodio": "BLSN610915913001-UU008"
+      },
+      {
+        "FechaHoraRegistro": "20171022 15:56",
+        "ExamenesSolicitados": [
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "IFI influenza A",
+            "Observacion": "",
+            "CodigoExamen": 451,
+            "IdOrdenExamen": 111951710220068,
+            "ResultadosExamen": {
+              "CodigoResultado": 451,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 451,
+              "IdOrdenExamen": 111951710220068,
+              "DescripcionResultado": "IFI influenza A"
+            },
+            "$$hashKey": "object:428"
+          },
+          {
+            "EstadoExamen": "Pendiente de informar",
+            "DescripcionExamen": "IFI influenza B",
+            "Observacion": "",
+            "CodigoExamen": 452,
+            "IdOrdenExamen": 111951710220068,
+            "ResultadosExamen": {
+              "CodigoResultado": 452,
+              "ValorResultado": "",
+              "UnidadMedida": "",
+              "Observacion": "",
+              "CodigoExamen": 452,
+              "IdOrdenExamen": 111951710220068,
+              "DescripcionResultado": "IFI influenza B"
+            },
+            "$$hashKey": "object:429"
+          }
+        ],
+        "IdOrdenExamen": 111951710220068,
+        "IdEpisodio": "BLSN610915913001-UU008"
+      },
+      {
+        "FechaHoraRegistro": "20171022 15:52",
+        "ExamenesSolicitados": {
+          "EstadoExamen": "Pendiente de informar",
+          "DescripcionExamen": "Rx Torax PA y Lateral de Pie",
+          "Observacion": "OBS-N.A.C.",
+          "CodigoExamen": 7000743,
+          "IdOrdenExamen": 17063647,
+          "ResultadosExamen": {
+            "CodigoResultado": 7000743,
+            "ValorResultado": "",
+            "UnidadMedida": "",
+            "ValorMaximo": "",
+            "CodigoExamen": 7000743,
+            "IdOrdenExamen": 17063647,
+            "ValorMinimo": "",
+            "DescripcionResultado": "Rx Torax PA y Lateral de Pie"
+          },
+          "$$hashKey": "object:446"
+        },
+        "IdOrdenExamen": 17063647,
+        "IdEpisodio": "BLSN610915913001-UU008"
+      }
+    ],
+    "summary": [ "MOTIVO DE CONSULTA:\r\n\r\n----RELATA  DESDE  HACE  3  DIAS,      TOS  PRODUCTIVA  ABUNDANTE , SENS  FEBRIL  HASTA  39  AX , MIALGIAS,  DOLOR  DORSO ---ADEMAS  DOLOR  TORAXICO  IRRADIADO  A  DORSO  2  DIAS  DE  EVOLUCION \r\nALERG0 NO \r\nAMORB=  HTA ----TBQ  15  CIG  DIARIOS  \r\nSOLICITO\r\n\r\nANAMNESIS:\r\n\r\nAnamnesis del día 22-10-2017 18:25 modificada por JUAN CARLOS BERRIOS DIAZ: \r\n\r\n\tPACIENTE MASCULINO DE 56 AÑOS CON ANTECEDENTES DE H.T.A. CON CUADRO CLINICO DE +/- 72 HORAS DE EVOLUCION ESTABLECIDO POR TOS HUMEDA ASOCIADA A PICOS FEBRILES NO CUANTIFICADOS ACOMPAÑADO DE ESPECTORACION MUCOIDE Y SENSACION DE OPRESION TORAXICA\r\n\r\n\r\n\r\n\r\nCONDUCTA:1.S/S LABORATORIOS DE CONTROL/RX DE TORAX AP\r\n                     2.S/S E.K.G\r\n                     3.CICLO DE NEBULIZACIONES BERODUAL #3\r\n                     4.HIDROCORTISONA 300 mgs E.V. AHORA\r\n\r\n\r\n\r\nEXPLORACIÓN FÍSICA:\r\n\r\n PACIENTE CONSCIENTE,ALERTA, ORIENTADO ENLAS 3 ESFERAS, CUELLO SIMETRICO SIN ADENOPATIAS NI SIGNOS DE INGURGTIACION YUGULAR; TORAX SIMETRICO SIN SIGNOS DE DIFICULTAD RESPITRATORIA;RUIDOS CARDIACOS RITMICOS NO SOPLOS, RUIDOS RESPIRATORIOS ASOCIADOS A SIBILANCIAS ESCASAS Y CREPITOS FINOS, ABDOMEN BLANOD DEPRESIBLE NO MASAS NO MEGALIAS\r\n\r\n\r\n\r\n\r\nDATOS DEL TRIAJE:\r\n\r\nCategorización:\r\nFecha/hora: 22-10-2017 15:38\r\nCategorización: C2 Muy Grave\r\n\r\n\r\n\r\nSIGNOS VITALES DE LA PRIMERA ATENCIÓN:\r\n\r\nFecha/Hora: 22-10-2017 15:33\r\nPresión Arterial: 105/69\r\nFrecuencia Cardiaca: 85\r\nTemperatura Axilar: (-)\r\nTemperatura Rectal: (-)\r\nFrecuencia Respiratoria: (-)\r\nSaturación o2: 98\r\n\r\n\r\nSIGNOS VITALES DE LA ÚLTIMA ATENCIÓN:\r\n\r\nFecha/Hora: 22-10-2017 15:48\r\nPresión Arterial: 115/69\r\nFrecuencia Cardiaca: 72\r\nTemperatura Axilar: (-)\r\nTemperatura Rectal: (-)\r\nFrecuencia Respiratoria: (-)\r\nSaturación o2: 95\r\n\r\n\r\n\r\n\r\nHIPÓTESIS DIAGNÓSTICA:\r\n\r\n(J20.9) BRONQUITIS AGUDA\r\n\r\nINDICACIONES AL ALTA:\r\n\r\n-ALTA\r\n-ERITROMICINA 500 mgs V.O. CADA 8 HORAS x 7 DIAS\r\n-AMBROXOL 10 ml V.O. CADA 8 HORAS x 4 DIAS\r\n-PARACETAMOL 1 gr V.O. CADA 8 HORAS x 4 DIAS\r\n-PREDNISONA 10 mgs V.O. CADA 12 HORAS x 6 DIAS\r\n-BROMURO DE IPATROPIUM 2 PUFF CADA 8 HORAS x 10 DIAS\r\n-REPOSO DURANTE 72 HORAS\r\n-CONTROL Y SEGUIMIE NTO EN CONSULTORIPO" ]
+  },
+  "_isDetailObtained": true,
+  "_isSelected": false,
+  "dateRaw": "20171022 15:25:00",
+  "healthCareCenterId": 11195,
+  "primaryDiagnosis": "BRONQUITIS AGUDA",
+  "uuid": "BLSN610915913001-UU008-FlorenceCL-11195",
+  "_searchableValues": [ "Urgencias", "Cerrado", "H. Dr. Alejandro del Rio", "JUAN CARLOS BERRIOS DIAZ", "URGENCIA", "Instalacion via venosa", "KTR instrumental. (Flutter, triflo, valvula IMT).", "Toma de examenes sanguineos", "TOMA MUESTRA CULTIVO SECRECION NASOFARINGEA (IFI)", "BRONQUITIS AGUDA" ],
+  "_inProgress": false
+}

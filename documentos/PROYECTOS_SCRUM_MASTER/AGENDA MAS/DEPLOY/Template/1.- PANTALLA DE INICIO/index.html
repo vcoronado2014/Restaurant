@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link type="image/png" rel="shortcut icon" href="/favicon.png">
+        <link type="image/png" rel="icon" href="/favicon.png">
+	   <link rel="stylesheet" type="text/css" href="css/misalud.min.css" />
+        <title>Bienvenido - Agenda Más</title>
+    </head>
+    <body>
+        <header class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+					
+                        <img src="img/logo_small.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="content-nopad">
+            <div class="heading heading-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7 col-md-6 heading-text">
+                            <h3>¿Qué es AGENDA MÁS?</h3>
+                            <p align="justify">
+                                <b>AGENDA MÁS</b> es su portal web donde usted podrá agendar sus citas médicas en el  establecimiento que se encuentra asociado, sin necesidad de acudir personalmente a su centro de salud, evitando hacer filas,  pérdida  tiempo y costos asociados a traslados.   Usted dispondrá de diversas alternativas para seleccionar un cupo; pero previo a ello, le recordamos que es importante revisar sus datos personales – correo electrónico, teléfono fijo y móvil-, para asegurar la confirmación de su cita.
+                            </p>
+                            <hr />                   
+                        </div>
+                        <div class="col-sm-5 col-md-6 intro-video-wrapper">
+                            <div class="intro-video embed-responsive embed-responsive-16by9">
+                                <button>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7E3EJG_Inxs" frameborder="0" allowfullscreen></iframe>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="heading heading-primary">
+                <div class="container">
+                    <div class="row" style="text-align:center;">
+                        <div style="display:inline-block;">
+                            <ul class="spaced">
+                                <iframe width="385" height="400" src="http://svr-proy-portales/AgendaWeb/autentificacion/#/publico" frameborder="0" allowfullscreen="" scrolling="no" style="overflow: hidden;"></iframe>
+                            </ul>
+                        </div>          
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var iframeLogin = document.querySelectorAll('iframe')[1];
+            var iframeLoginUrl = iframeLogin.src.replace(/\/$/, '');
+                iframeLoginUrl = iframeLoginUrl+ '/' + btoa(window.location.href);
+            iframeLogin.src = iframeLoginUrl;
+        </script>
+    </body>
+</html>

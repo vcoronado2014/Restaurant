@@ -1,0 +1,138 @@
+<div class="row"> <h3 class="row"> Buscar usuario <span class="right pointer hoverUnderline" ng-click="vm.openModalCreateUser()"> <i class="fi-plus"></i> Crear usuario</span> </h3> <div class="row" style="padding-top:20px"> <label class="large-4 columns" ng-if="!vm.user.contactCenter.id"> <span><i class="fi-magnifying-glass"></i> Centro de contacto</span> <input type="text" ng-model="vm.filters.contactCenter" ng-change="vm.users = []; vm.filters.user = undefined;" typeahead-on-select="vm.filters.contactCenter = $item; vm.refreshData('contactCenter');" placeholder="Nombre del centro de contacto" typeahead="contactCenter.NombreCentro for contactCenter in vm.contactCenters | filter:$viewValue | limitTo:8" ng-if="vm.contactCenters.length" maxlength="20"> <input type="text" value="Cargando centros de contacto..." ng-if="!vm.contactCenters.length" disabled> </label> <label class="large-4 columns"> <span><i class="fi-magnifying-glass"></i> Usuario</span> <input type="text" ng-model="vm.userTextSearch" ng-change="vm.filters.user = undefined;" typeahead-on-select="vm.filters.user = $item; vm.loadChangedData(); vm.refreshData('user');" placeholder="Nombre del usuario" typeahead="user.name+' ('+user.run2+')' for user in vm.users | filter:$viewValue | limitTo:8" ng-if="vm.users.length" maxlength="55"> <input type="text" value="Sin usuarios encontrados..." ng-if="!vm.users.length" disabled> </label> <span></span> </div> <form class="row" ng-submit="vm.changeData()" ng-if="vm.filters.user"> <fieldset ng-disabled="vm.loading"> <h4 class="large-12 columns">Datos del usuario</h4> <div class="large-12 columns marginTop20"> <div class="large-4 columns"> <label> <strong>Nombre de usuario</strong> <input type="text" ng-model="vm.userChangedData.user" maxlength="20"> </label> </div> <div class="large-4 columns"> <label> <strong>Nueva contraseña</strong> <input type="password" ng-model="vm.userChangedData.pass" maxlength="20"> </label> </div> <div class="large-4 columns"> <label> <strong>Repetir contraseña</strong> <input type="password" ng-model="vm.userChangedData.pass2" maxlength="20"> </label> </div> </div> <div class="large-12 columns"> <div class="large-4 columns"> <label> <strong>Primer nombre</strong> <input type="text" ng-model="vm.userChangedData.name" maxlength="20"> </label> </div> <div class="large-4 columns"> <label> <strong>Segundo nombre</strong> <input type="text" ng-model="vm.userChangedData.name2" maxlength="20"> </label> </div> <div class="large-4 columns"> <label> <strong>RUN</strong> <input type="text" ng-model="vm.userChangedData.run" ng-blur="vm.runFormat()" it-only="[0-9kK\.\-]+" maxlength="12"> </label> </div> </div> <div class="large-12 columns"> <div class="large-4 columns"> <label> <strong>Apellido paterno</strong> <input type="text" ng-model="vm.userChangedData.lastName" maxlength="20"> </label> </div> <div class="large-4 columns"> <label> <strong>Apellido materno</strong> <input type="text" ng-model="vm.userChangedData.lastName2" maxlength="20"> </label> </div> <div class="large-4 columns"> <label> <strong>Fecha de nacimiento</strong> <input type="text" ng-model="vm.userChangedData.date" date-limit="today" f-datepicker="true" it-only="[0-9\/]+" maxlength="10"> </label> </div> </div> <div class="large-12 columns"> <div class="large-4 columns" ng-if="!vm.user.contactCenter.id"> <label> <strong>Centro de contacto</strong> <input type="text" placeholder="Nombre de centro de contacto" typeahead="contactCenter.NombreCentro for contactCenter in vm.contactCenters | filter:$viewValue | limitTo:8" ng-model="vm.userChangedData.contactCenter"> </label> </div> <div class="large-4 columns noPaddingLeft noPaddingRight" ng-if="vm.user.id !== vm.filters.user.id"> <label class="large-4 columns"> <strong>Supervisor</strong> <div class="switch"> <input id="isSupervisor2" type="checkbox" ng-model="vm.userChangedData.isSupervisor"> <label for="isSupervisor2"></label> </div> </label> <label class="large-4 columns"> <strong>Administrador</strong> <div class="switch"> <input id="isAdministrator2" type="checkbox" ng-model="vm.userChangedData.isAdministrator"> <label for="isAdministrator2"></label> </div> </label> <label class="large-4 columns"> <strong>Activo</strong> <div class="switch"> <input id="isActive" type="checkbox" ng-model="vm.userChangedData.isActive"> <label for="isActive"></label> </div> </label> </div> <div class="large-4 columns"> <input type="submit" class="button" value="Guardar datos"> <i load-icon="blackLoad" ng-if="vm.loading"></i> </div> <span></span> </div> </fieldset> </form> <div class="row" ng-if="vm.filters.user"> <div class="large-6 columns noPaddingLeft"> <h4 class="large-12 columns">Establecimientos asociados</h4> <table class="large-12 columns tableStyle"> <thead> <tr> <th>Nombre</th> <th></th> </tr> </thead> <tbody> <tr ng-repeat="healthCareCenter in vm.filters.user.healthCareCenters"> <td>{{healthCareCenter.NombreEstablecimiento}}</td> <td><a ng-click="vm.changeEstablishment(healthCareCenter, 'delete')"><i class="fi-trash"></i> Eliminar</a></td> </tr> <tr ng-if="vm.filters.user"> <td> <input type="text" ng-model="vm.filters.healthCareCenter" placeholder="Buscar establecimiento" ng-if="vm.healthCareCenters.length" typeahead="healthCareCenter.NombreEstablecimiento for healthCareCenter in vm.healthCareCenters | filter:$viewValue | limitTo:8" typeahead-on-select="vm.filters.healthCareCenter = $item;"> <input type="text" value="Cargando establecimientos..." ng-if="vm.loading" disabled> <input type="text" value="Sin establecimientos disponibles" ng-if="!vm.loading && !vm.healthCareCenters.length" disabled> </td> <td><a ng-if="vm.healthCareCenters.length" ng-click="vm.changeEstablishment(vm.filters.healthCareCenter, 'add')"><i class="fi-plus"></i> Agregar</a></td> </tr> <tr ng-if="!vm.filters.user"> <td colspan="3" class="center">No hay usuario seleccionado.</td> </tr> </tbody> </table> </div> </div> </div> <script type="text/ng-template" id="modalCreateUser.html"><h3>Crear usuario</h3>
+	<form ng-submit="ok()">
+		<fieldset ng-disabled="load">
+			<label>
+				<strong>Nombre de usuario *:</strong>
+				<input
+					type="text"
+					ng-model="form.user"
+					maxlength="20"
+					required />
+			</label>
+			<div class="row">
+				<div class="large-6 columns noPaddingLeft">
+					<label>
+						<strong>Contraseña *:</strong>
+						<input
+							type="password"
+							ng-model="form.pass"
+							maxlength="20"
+							required />
+					</label>
+				</div>
+				<div class="large-6 columns noPaddingRight">
+					<label>
+						<strong>Repetir contraseña *:</strong>
+						<input
+							type="password"
+							ng-model="form.pass2"
+							maxlength="20"
+							required />
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns noPaddingLeft">
+					<label>
+						<strong>Primer nombre *:</strong>
+						<input
+							type="text"
+							ng-model="form.name"
+							maxlength="20"
+							required />
+					</label>
+				</div>
+				<div class="large-6 columns noPaddingRight">
+					<label>
+						<strong>Segundo nombre:</strong>
+						<input
+							type="text"
+							ng-model="form.name2"
+							maxlength="20" />
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns noPaddingLeft">
+					<label>
+						<strong>Apellido paterno *:</strong>
+						<input
+							type="text"
+							ng-model="form.lastName"
+							maxlength="20"
+							required />
+					</label>
+				</div>
+				<div class="large-6 columns noPaddingRight">
+					<label>
+						<strong>Apellido materno:</strong>
+						<input
+							type="text"
+							ng-model="form.lastName2"
+							maxlength="20" />
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns noPaddingLeft">
+					<label>
+						<strong>RUN *:</strong>
+						<input 
+							type="text" 
+							ng-model="form.run" 
+							ng-blur="runFormat()" 
+							required 
+							it-only="[0-9kK\.\-]+"
+							maxlength="12" />
+					</label>
+				</div>
+				<div class="large-6 columns noPaddingRight">
+					<label>
+						<strong>Fecha de nacimiento *:</strong>
+						<input 
+							type="text"
+							ng-model="form.date" 
+							required 
+							f-datepicker="true" 
+							date-limit="today"
+							it-only="[0-9\/]+"
+							maxlength="10" />
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns noPaddingLeft" ng-if="!user.contactCenter.id">
+					<label>
+						<strong>Centro de contacto *:</strong>
+						<input
+							type="text"
+							ng-model="form.contactCenter"
+							typeahead="contactCenter.NombreCentro for contactCenter in contactCenters | filter:$viewValue | limitTo:8"
+							maxlength="20"
+							required />
+					</label>
+				</div>
+				<div class="large-6 columns noPaddingRight">
+					<label class="large-6 columns">
+						<strong>Supervisor:</strong> 
+						<div class="switch">
+							<input id="isSupervisor" type="checkbox" ng-model="form.isSupervisor" />
+							<label for="isSupervisor"></label>
+						</div> 
+					</label>
+					<label class="large-6 columns">
+						<strong>Administrador:</strong> 
+						<div class="switch">
+							<input id="isAdministrator" type="checkbox" ng-model="form.isAdministrator" />
+							<label for="isAdministrator"></label>
+						</div> 
+					</label>
+					<span></span>
+				</div>
+				<span></span>
+			</div>
+			<span class="button" ng-click="salir()">Cancelar</span>
+			<input type="submit" class="button" value="Crear" /> 
+			<i load-icon="blackLoad" ng-if="load"></i>
+		</fieldset>
+	</form></script>
