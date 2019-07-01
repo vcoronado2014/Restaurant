@@ -19,6 +19,7 @@
             <h2>{{ item.Nombre }}</h2>
             <p text-wrap>{{item.Direccion}}</p>
             <p text-wrap><strong>{{item.Tipo}}</strong></p>
+            <p text-wrap><strong>{{item.Menus.length}} menús disponibles</strong></p>
             <ion-item no-lines style="padding: 0;">
                 <ion-badge item-end>Horas Disponibles: {{item.HorasDisponibles}}</ion-badge>
                 <ion-badge color="danger" item-end>Horas Ocupadas: {{item.HorasReservadas}}</ion-badge>

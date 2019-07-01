@@ -23,6 +23,15 @@ export class MyApp {
     });
   }
   guardarDatosRestaurant(){
+    if (!localStorage.getItem('FECHA_INICIO')){
+
+      var fechaInicio = moment().add(1, 'days').toDate();
+      fechaInicio.setHours(10);
+      fechaInicio.setMinutes(0);
+      fechaInicio.setSeconds(0);
+      fechaInicio.setMilliseconds(0);
+      localStorage.setItem('FECHA_INICIO', moment(fechaInicio).format());
+    }
     //estos son datos estaticos
     //COMUNAS
     if (!localStorage.getItem('ARR_COMUNAS')){
@@ -275,26 +284,65 @@ export class MyApp {
     //horas y dias disponibles para las mesas
     //estas hay que procesarlas desde la fecha hora actual agregando un dia
     if (!localStorage.getItem('ARR_HORAS_MESAS')){
-      var fechaInicio = moment().add(1, 'days');
+      //var fechaIni = moment().add(1, 'days');
+      var fechaIni = moment(localStorage.getItem('FECHA_INICIO'));
       //var fechaTermino = moment().add(1, 'days'); las mesas ids van desde la 1 a la 20
       var arrHorasMesas = [];
       var contador = 1;
+      var contadorHoras = 1;
       for(var i = 0; i <= 7; i++){
         var contadorMesas = 1;
-        var fechaAgendar = fechaInicio.add(1, 'days');
+        var fechaAgendar = fechaIni.add(1, 'days').toDate();
+        fechaAgendar.setHours(10);
+        fechaAgendar.setMinutes(0);
+        fechaAgendar.setSeconds(0);
+        fechaAgendar.setMilliseconds(0);
         //20 veces la misma fecha
         for (var j=1; j< 21; j++){
+          /*
+          fechaAgendar.setHours(10);
+          fechaAgendar.setMinutes(0);
+          fechaAgendar.setSeconds(0);
+          fechaAgendar.setMilliseconds(0);
+          */
 
           var entidad = {
-            Fecha: fechaAgendar.format(),
+            Fecha: moment(fechaAgendar).format(),
             Id: contador,
             MesaId: j,
-            Reservada: false
+            Reservada: false,
+            Segmento: []
           };
-  
+          var horas = [];
+          for (var s=0; s<4; s++){
+            var fechaHora = moment(fechaAgendar).add(2, 'hours');
+
+            var horita = {
+              Fecha: fechaHora.format(),
+              Id: contadorHoras,
+              Reservada: false
+            };
+            horas.push(horita);
+            contadorHoras++;
+            if (moment(fechaAgendar).hour() > 16){
+              console.log('aca');
+            }
+            //fechaAgendar = moment(fechaAgendar).add(2, 'hours').toDate();
+            //aumentamos la hora
+            /*
+            fechaAgendar = fechaHora.toDate();
+            fechaAgendar.setHours(10);
+            fechaAgendar.setMinutes(0);
+            fechaAgendar.setSeconds(0);
+            fechaAgendar.setMilliseconds(0);
+            */
+          }
+          entidad.Segmento = horas;
           arrHorasMesas.push(entidad);
           contador++;
         }
+        //hay que setear la fecha inicio a las 10 am
+        //fechaIni = moment(fechaAgendar);
 
       }
 

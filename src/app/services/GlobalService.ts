@@ -11,6 +11,209 @@ export class GlobalService {
     ) {
         moment.locale('es');
     }
+    menusRestaurantePeruano(){
+        //variable estatica no deberìa cambiar
+        var arrMenus = [];
+        if(!localStorage.getItem('ARR_MENUS_PERUANO')){
+            //SI NO ESTA ENTONCES CREAMOS EL MENU
+            //restaurante peruano
+            var menu1 = {
+                IdRestaurant: 1,
+                Nombre: 'Menú ejecutivo',
+                Entrada: 'Causa de Atún',
+                Fondo: 'Ají de gallina',
+                Bebestible: 'Bebida Express, Jugo natural o Copa de vino',
+                Postre: 'Crema volteada o Mouse de maracuyá',
+                Valor: '$ 6.900',
+                ValorInt: 6900
+            };
+            //restaurante peruano
+            var menu2 = {
+                IdRestaurant: 1,
+                Nombre: 'Menú ejecutivo',
+                Entrada: 'Tequeños de lomo',
+                Fondo: 'Seco de vacuno',
+                Bebestible: 'Bebida Express, Jugo natural o Copa de vino',
+                Postre: 'Crema volteada o Mouse de maracuyá',
+                Valor: '$ 6.900',
+                ValorInt: 6900
+            };
+            //restaurante peruano
+            var menu3 = {
+                IdRestaurant: 1,
+                Nombre: 'Menú especial',
+                Entrada: 'Cebiche de pescado o Ensalada rusa',
+                Fondo: 'Lomo Salteado o Arroz chaufa de pollo',
+                Bebestible: 'Bebida Express, Jugo natural o Copa de vino',
+                Postre: 'Crema volteada o Mouse de maracuyá',
+                Valor: '$ 9.900',
+                ValorInt: 9900
+            };
+            arrMenus.push(menu1);
+            arrMenus.push(menu2);
+            arrMenus.push(menu3);
+            localStorage.setItem('ARR_MENUS_PERUANO', JSON.stringify(arrMenus));
+
+        }
+        else {
+            arrMenus = JSON.parse(localStorage.getItem('ARR_MENUS_PERUANO'));
+        }
+        return arrMenus;
+
+    }
+
+    menusRestauranteChilena(){
+        //variable estatica no deberìa cambiar
+        var arrMenus = [];
+        if(!localStorage.getItem('ARR_MENUS_CHILENA')){
+            //SI NO ESTA ENTONCES CREAMOS EL MENU
+            //restaurante chileno
+            var menu1 = {
+                IdRestaurant: 2,
+                Nombre: 'Menú ejecutivo',
+                Entrada: 'Ensalada chilena',
+                Fondo: 'Porotos con Rienda',
+                Bebestible: 'Bebida Express o Copa de vino',
+                Postre: 'Duraznos con crema',
+                Valor: '$ 5.900',
+                ValorInt: 5900
+            };
+            //restaurante chileno
+            var menu2 = {
+                IdRestaurant: 2,
+                Nombre: 'Menú ejecutivo',
+                Entrada: 'Ensalada surtida',
+                Fondo: 'Papas cocidas con longaniza',
+                Bebestible: 'Bebida Express o Copa de vino',
+                Postre: 'Mix de frutas con crema',
+                Valor: '$ 5.900',
+                ValorInt: 5900
+            };
+            //restaurante chileno
+            var menu3 = {
+                IdRestaurant: 2,
+                Nombre: 'Menú especial',
+                Entrada: 'Empanada de Horno',
+                Fondo: 'Lomo Vetado con puré o arroz',
+                Bebestible: 'Bebida Express o Copa de vino',
+                Postre: 'Mix de frutas con crema',
+                Valor: '$ 9.900',
+                ValorInt: 9900
+            };
+            arrMenus.push(menu1);
+            arrMenus.push(menu2);
+            arrMenus.push(menu3);
+            localStorage.setItem('ARR_MENUS_CHILENA', JSON.stringify(arrMenus));
+
+        }
+        else {
+            arrMenus = JSON.parse(localStorage.getItem('ARR_MENUS_CHILENA'));
+        }
+        return arrMenus;
+
+    }
+
+    menusRestauranteSushy(){
+        //variable estatica no deberìa cambiar
+        var arrMenus = [];
+        if(!localStorage.getItem('ARR_MENUS_SUSHY')){
+            //SI NO ESTA ENTONCES CREAMOS EL MENU
+            //restaurante chileno
+            var menu1 = {
+                IdRestaurant: 3,
+                Nombre: 'Menú California',
+                Entrada: 'Gyozas (pollo o cerdo) 3 Unidades',
+                Fondo: 'California Rolls 3 Unidades, California Sake 3 Unidades',
+                Bebestible: 'Bebida Express',
+                Postre: '',
+                Valor: '$ 6.500',
+                ValorInt: 6500
+            };
+            //restaurante chileno
+            var menu2 = {
+                IdRestaurant: 3,
+                Nombre: 'Menú avocado',
+                Entrada: 'Gyozas (pollo o cerdo) 3 Unidades',
+                Fondo: 'Avocado Rolls 3 Unidades, Avocado Tori 3 Unidades',
+                Bebestible: 'Bebida Express',
+                Postre: '',
+                Valor: '$ 6.500',
+                ValorInt: 6500
+            };
+            //restaurante chileno
+            var menu3 = {
+                IdRestaurant: 1,
+                Nombre: 'Menú especial',
+                Entrada: 'Ceviche de salmón o Ceviche Roll',
+                Fondo: 'Tempura Rolls 3 Unidades, Futomaki apanado 3 Unidades',
+                Bebestible: 'Bebida Express',
+                Postre: '',
+                Valor: '$ 8.900',
+                ValorInt: 8900
+            };
+            arrMenus.push(menu1);
+            arrMenus.push(menu2);
+            arrMenus.push(menu3);
+            localStorage.setItem('ARR_MENUS_SUSHY', JSON.stringify(arrMenus));
+
+        }
+        else {
+            arrMenus = JSON.parse(localStorage.getItem('ARR_MENUS_SUSHY'));
+        }
+        return arrMenus;
+
+    }
+
+    menusRestauranteChino(){
+        //variable estatica no deberìa cambiar
+        var arrMenus = [];
+        if(!localStorage.getItem('ARR_MENUS_CHINO')){
+            //SI NO ESTA ENTONCES CREAMOS EL MENU
+            //restaurante chileno
+            var menu1 = {
+                IdRestaurant: 4,
+                Nombre: 'Menú Uno',
+                Entrada: 'Arrollado primavera o Wantan',
+                Fondo: 'Chapsui de carne o de pollo',
+                Bebestible: 'Bebida Express',
+                Postre: '',
+                Valor: '$ 4.500',
+                ValorInt: 4500
+            };
+            //restaurante chileno
+            var menu2 = {
+                IdRestaurant: 4,
+                Nombre: 'Menú Dos',
+                Entrada: 'Arrollado primavera o Wantan',
+                Fondo: 'Carne o pollo mongoliano',
+                Bebestible: 'Bebida Express',
+                Postre: '',
+                Valor: '$ 4.800',
+                ValorInt: 4800
+            };
+            //restaurante chileno
+            var menu3 = {
+                IdRestaurant: 1,
+                Nombre: 'Menú Tres',
+                Entrada: 'Arrollado primavera o Wantan',
+                Fondo: 'Carne Chapiñón o Parrillada china',
+                Bebestible: 'Bebida Express',
+                Postre: '',
+                Valor: '$ 5.900',
+                ValorInt: 5900
+            };
+            arrMenus.push(menu1);
+            arrMenus.push(menu2);
+            arrMenus.push(menu3);
+            localStorage.setItem('ARR_MENUS_CHINO', JSON.stringify(arrMenus));
+
+        }
+        else {
+            arrMenus = JSON.parse(localStorage.getItem('ARR_MENUS_CHINO'));
+        }
+        return arrMenus;
+
+    }    
 
 
     insertarUsuario(correo, nombre, password){
@@ -133,6 +336,19 @@ export class GlobalService {
                             }
                         });
 
+                    }
+                    //agregamos los menus
+                    if (restaurant.Id == 1){
+                        restaurant.Menus = this.menusRestaurantePeruano();
+                    }
+                    if (restaurant.Id == 2){
+                        restaurant.Menus = this.menusRestauranteChilena();
+                    }
+                    if (restaurant.Id == 3){
+                        restaurant.Menus = this.menusRestauranteSushy();
+                    }
+                    if (restaurant.Id == 4){
+                        restaurant.Menus = this.menusRestauranteChino();
                     }
                     restaurant.HorasReservadas = horasReservadas;
                     restaurant.HorasDisponibles = horasDisponibles;

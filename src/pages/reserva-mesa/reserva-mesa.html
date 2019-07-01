@@ -17,7 +17,29 @@
           <p>
             {{item.Direccion}}, {{item.Comuna}}, {{item.Ciudad}}
           </p>
+          <!--
+          <ion-list no-lines>
+            <ion-list-header>
+              Menús
+            </ion-list-header>
+            <ion-item *ngFor="let menu of item.Menus">
+              {{menu.Nombre}}
+            </ion-item>
+          </ion-list>
+          -->
+          <div class="accordion">
+            <ul *ngFor="let menu of item.Menus">
+              <li>
+                <a href="#" class="acc-handle" tabindex="0">{{menu.Nombre}}</a>
+                <div class="acc-panel">
+                  <p text-wrap text-justify>Entrada: {{menu.Entrada}}, Fondo: {{menu.Fondo}}, Bebestible: {{menu.Bebestible}}</p>
+                  <p *ngIf="menu.Postre != ''" text-wrap text-justify>Postre: {{menu.Postre}}</p>
+                  <ion-badge item-end>Valor: {{menu.Valor}}</ion-badge>
+                </div>
+              </li>
 
+            </ul>
+          </div>
         </ion-card-content>
       </ion-card>
       <!--aca el listado de mesas disponibles para servar-->
