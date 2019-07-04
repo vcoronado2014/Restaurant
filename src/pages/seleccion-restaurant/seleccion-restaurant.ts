@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {InicioPage} from "../inicio/inicio";
 import {ReservaMesaPage} from "../reserva-mesa/reserva-mesa";
+import {SeleccionMenuPage} from "../seleccion-menu/seleccion-menu";
 import { GlobalService } from '../../app/services/GlobalService';
 
 /**
@@ -53,6 +54,11 @@ export class SeleccionRestaurantPage {
   abrirReserva(item) {
 
     let modal = this.modalCtrl.create(ReservaMesaPage, { item: item });
+    modal.present();
+  }
+  abrirMenu(item) {
+
+    let modal = this.modalCtrl.create(SeleccionMenuPage, { item: item });
     modal.present();
   }
 

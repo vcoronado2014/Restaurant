@@ -18,6 +18,7 @@ export class GlobalService {
             //SI NO ESTA ENTONCES CREAMOS EL MENU
             //restaurante peruano
             var menu1 = {
+                Id:1,
                 IdRestaurant: 1,
                 Nombre: 'Menú ejecutivo',
                 Entrada: 'Causa de Atún',
@@ -29,6 +30,7 @@ export class GlobalService {
             };
             //restaurante peruano
             var menu2 = {
+                Id:2,
                 IdRestaurant: 1,
                 Nombre: 'Menú ejecutivo',
                 Entrada: 'Tequeños de lomo',
@@ -40,6 +42,7 @@ export class GlobalService {
             };
             //restaurante peruano
             var menu3 = {
+                Id:3,
                 IdRestaurant: 1,
                 Nombre: 'Menú especial',
                 Entrada: 'Cebiche de pescado o Ensalada rusa',
@@ -69,6 +72,7 @@ export class GlobalService {
             //SI NO ESTA ENTONCES CREAMOS EL MENU
             //restaurante chileno
             var menu1 = {
+                Id:4,
                 IdRestaurant: 2,
                 Nombre: 'Menú ejecutivo',
                 Entrada: 'Ensalada chilena',
@@ -80,6 +84,7 @@ export class GlobalService {
             };
             //restaurante chileno
             var menu2 = {
+                Id:5,
                 IdRestaurant: 2,
                 Nombre: 'Menú ejecutivo',
                 Entrada: 'Ensalada surtida',
@@ -91,6 +96,7 @@ export class GlobalService {
             };
             //restaurante chileno
             var menu3 = {
+                Id:6,
                 IdRestaurant: 2,
                 Nombre: 'Menú especial',
                 Entrada: 'Empanada de Horno',
@@ -120,6 +126,7 @@ export class GlobalService {
             //SI NO ESTA ENTONCES CREAMOS EL MENU
             //restaurante chileno
             var menu1 = {
+                Id:7,
                 IdRestaurant: 3,
                 Nombre: 'Menú California',
                 Entrada: 'Gyozas (pollo o cerdo) 3 Unidades',
@@ -131,6 +138,7 @@ export class GlobalService {
             };
             //restaurante chileno
             var menu2 = {
+                Id:8,
                 IdRestaurant: 3,
                 Nombre: 'Menú avocado',
                 Entrada: 'Gyozas (pollo o cerdo) 3 Unidades',
@@ -142,6 +150,7 @@ export class GlobalService {
             };
             //restaurante chileno
             var menu3 = {
+                Id:9,
                 IdRestaurant: 1,
                 Nombre: 'Menú especial',
                 Entrada: 'Ceviche de salmón o Ceviche Roll',
@@ -171,6 +180,7 @@ export class GlobalService {
             //SI NO ESTA ENTONCES CREAMOS EL MENU
             //restaurante chileno
             var menu1 = {
+                Id:10,
                 IdRestaurant: 4,
                 Nombre: 'Menú Uno',
                 Entrada: 'Arrollado primavera o Wantan',
@@ -182,6 +192,7 @@ export class GlobalService {
             };
             //restaurante chileno
             var menu2 = {
+                Id: 11,
                 IdRestaurant: 4,
                 Nombre: 'Menú Dos',
                 Entrada: 'Arrollado primavera o Wantan',
@@ -193,6 +204,7 @@ export class GlobalService {
             };
             //restaurante chileno
             var menu3 = {
+                Id:12,
                 IdRestaurant: 1,
                 Nombre: 'Menú Tres',
                 Entrada: 'Arrollado primavera o Wantan',

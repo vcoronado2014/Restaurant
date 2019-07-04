@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController, ViewController } from 'ionic
 import {HomePage} from "../home/home";
 import {InicioPage} from "../inicio/inicio";
 import {ReservaHoraPage} from "../reserva-hora/reserva-hora";
+import {SeleccionMenuPage} from "../seleccion-menu/seleccion-menu";
 import { GlobalService } from '../../app/services/GlobalService';
 
 /**
@@ -44,7 +45,7 @@ mesaSeleccionada;
   guardar(){
     //this.closeModal(null);
     if (this.mesaSeleccionada != null){
-      let modal = this.modalCtrl.create(ReservaHoraPage, { item: this.mesaSeleccionada, restaurant: this.item });
+      let modal = this.modalCtrl.create(SeleccionMenuPage, { item: this.item, mesa: this.mesaSeleccionada, restaurant: this.item });
       modal.present();
     }
 

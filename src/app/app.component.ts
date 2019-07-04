@@ -277,6 +277,35 @@ export class MyApp {
       arrMesas.push(mesa18);
       arrMesas.push(mesa19);
       arrMesas.push(mesa20);
+      //nuevas mesas para uno
+      var mesa21 = {
+        Id: 21,
+        Nombre: 'Mesa 5',
+        Cantidad: mesaParaUno,
+        IdRestaurant: 1
+      };
+      var mesa22 = {
+        Id: 22,
+        Nombre: 'Mesa 5',
+        Cantidad: mesaParaUno,
+        IdRestaurant: 2
+      };
+      var mesa23 = {
+        Id: 23,
+        Nombre: 'Mesa 5',
+        Cantidad: mesaParaUno,
+        IdRestaurant: 3
+      };
+      var mesa24 = {
+        Id: 24,
+        Nombre: 'Mesa 5',
+        Cantidad: mesaParaUno,
+        IdRestaurant: 4
+      };
+      arrMesas.push(mesa21);
+      arrMesas.push(mesa22);
+      arrMesas.push(mesa23);
+      arrMesas.push(mesa24);
 
       localStorage.setItem('ARR_MESAS_RESTAURANTES', JSON.stringify(arrMesas));
     }
@@ -298,7 +327,7 @@ export class MyApp {
         fechaAgendar.setSeconds(0);
         fechaAgendar.setMilliseconds(0);
         //20 veces la misma fecha
-        for (var j=1; j< 21; j++){
+        for (var j=1; j< 25; j++){
           /*
           fechaAgendar.setHours(10);
           fechaAgendar.setMinutes(0);
@@ -314,28 +343,28 @@ export class MyApp {
             Segmento: []
           };
           var horas = [];
+          //this.agregarHoras(fechaAgendar, horas);
+          var fechaHora = moment(fechaAgendar).toDate();
+          fechaHora.setHours(11);
+          fechaHora.setMinutes(30);
+          fechaHora.setSeconds(0);
+          fechaHora.setMilliseconds(0);
           for (var s=0; s<4; s++){
-            var fechaHora = moment(fechaAgendar).add(2, 'hours');
+            var nuevaFecha = moment(fechaHora).add(90, 'minutes');
+            //var fechaHora = moment(fechaAgendar).add(2, 'hours');
 
             var horita = {
-              Fecha: fechaHora.format(),
+              Fecha: moment(fechaHora).format(),
               Id: contadorHoras,
               Reservada: false
             };
             horas.push(horita);
-            contadorHoras++;
-            if (moment(fechaAgendar).hour() > 16){
-              console.log('aca');
+
+            if (s >= 0) {
+              fechaHora = nuevaFecha.toDate();
             }
-            //fechaAgendar = moment(fechaAgendar).add(2, 'hours').toDate();
-            //aumentamos la hora
-            /*
-            fechaAgendar = fechaHora.toDate();
-            fechaAgendar.setHours(10);
-            fechaAgendar.setMinutes(0);
-            fechaAgendar.setSeconds(0);
-            fechaAgendar.setMilliseconds(0);
-            */
+            contadorHoras++;
+
           }
           entidad.Segmento = horas;
           arrHorasMesas.push(entidad);
@@ -350,6 +379,22 @@ export class MyApp {
 
     }
 
+  }
+  agregarHoras(fecha, arrHoras){
+    var fechaHora = moment(fecha).toDate();
+    fechaHora.setHours(10);
+    fechaHora.setMinutes(0);
+    fechaHora.setSeconds(0);
+    fechaHora.setMilliseconds(0);
+    for (var s=0; s<4; s++){
+      var nuevaFecha = moment(fechaHora).add(2, 'hours');
+      //console.log(nuevaFecha);
+
+      if (s >= 0) {
+        fechaHora = nuevaFecha.toDate();
+      }
+
+    }
   }
 }
 
