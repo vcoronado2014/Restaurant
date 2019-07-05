@@ -123,6 +123,9 @@ export class ReservaHoraPage {
     });
     alert.present();
   }
+  traerHoraSeleccionada(id){
+    
+  }
   presentToast = function(mensaje, posicion, duracion) {
     let toast = this.toastCtrl.create({
       message: mensaje,
