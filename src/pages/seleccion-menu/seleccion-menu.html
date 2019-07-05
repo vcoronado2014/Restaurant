@@ -27,7 +27,7 @@
     <ion-card>
     
       <ion-card-header>
-        Agregue Menús 
+        Agregue Menús
       </ion-card-header>
     
       <ion-card-content>
@@ -58,7 +58,9 @@
     <!--lista de menus-->
     <ion-list>
         <ion-list-header>
-          Menús agregados
+          Menús agregados  
+          <ion-badge *ngIf="faltan > 0" color="success" item-end>Falta(n) {{faltan}} menú(s)</ion-badge>
+          <ion-badge *ngIf="arrMenus.length == totalCompletar" color="danger" item-end>Completo</ion-badge>
         </ion-list-header>
         <ion-item *ngFor="let item of arrMenus">
           <h2>{{item.Nombre}}</h2>
@@ -76,7 +78,7 @@
             <button ion-button color="secondary" (click)="closeModal(null)" clear>Cancelar</button>
         </ion-col>
         <ion-col>
-            <button  style="float: right;" ion-button color="primary" (click)="guardar()" clear>Siguiente</button>
+            <button  style="float: right;" ion-button color="primary" (click)="abrirReserva()" clear>Siguiente</button>
         </ion-col>
     </ion-item>
 </ion-content>

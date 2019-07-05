@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, ViewController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ViewController, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import { GlobalService } from '../../app/services/GlobalService';
 import * as moment from 'moment';
@@ -21,6 +21,8 @@ export class ReservaHoraPage {
   mesaSeleccionada;
   horaSeleccionada;
   usurioLogueado;
+  item;
+  arrMenus;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,11 +31,18 @@ export class ReservaHoraPage {
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
     public loading: LoadingController,
+    public alertCtrl: AlertController,
     public viewCtrl: ViewController
     ) {
       moment.locale('es');
-      this.mesaSeleccionada = this.navParams.get('item');
+      this.mesaSeleccionada = this.navParams.get('mesa');
       this.restaurant = this.navParams.get('restaurant');
+      this.item = this.navParams.get('item');
+      this.arrMenus = this.navParams.get('arrMenus');
+      console.log(this.arrMenus);
+      console.log(this.mesaSeleccionada);
+
+      
       if (this.mesaSeleccionada.Horas){
         this.mesaSeleccionada.Horas.forEach(hora => {
           var fechaStr = moment(hora.Fecha);
@@ -80,6 +89,39 @@ export class ReservaHoraPage {
   seleccionar(hora){
     console.log(hora);
     this.horaSeleccionada = hora;
+  }
+  showRadio(fecha) {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Seleccione Hora');
+
+    fecha.Segmento.forEach(segmento => {
+      alert.addInput({
+        type: 'radio',
+        label: segmento.Fecha,
+        value: segmento.Id,
+        checked: segmento.Reservada
+      });
+      
+    });
+    /*
+    alert.addInput({
+      type: 'radio',
+      label: 'Blue',
+      value: 'blue',
+      checked: true
+    });
+    */
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        console.log(data);
+        //this.testRadioOpen = false;
+        //this.testRadioResult = data;
+      }
+    });
+    alert.present();
   }
   presentToast = function(mensaje, posicion, duracion) {
     let toast = this.toastCtrl.create({

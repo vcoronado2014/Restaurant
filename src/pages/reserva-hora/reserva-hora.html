@@ -30,7 +30,7 @@
     
       <ion-item *ngFor="let item of mesaSeleccionada.Horas">
         <ion-label><strong>{{item.FechaStr}}</strong></ion-label>
-        <ion-radio  [value]="item.Id" [disabled]="item.Reservada" (click)="seleccionar(item)"></ion-radio>
+        <ion-radio  [value]="item.Id" [disabled]="item.Reservada" (click)="showRadio(item)"></ion-radio>
       </ion-item>
 
     </ion-list>
