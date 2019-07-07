@@ -1,0 +1,24 @@
+<ion-header style="background-color: #488aff; color: white;">
+  <ion-navbar>
+    <ion-title>
+      Seleccionar Hora
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item *ngFor="let seg of horaSeleccionada.Segmento">
+        <ion-label><strong>{{seg.FechaStr}}</strong></ion-label>
+        <ion-radio  [value]="seg.Id" [disabled]="seg.Reservada" (click)="seleccionar(seg)"></ion-radio>
+      </ion-item>
+
+    <ion-item no-lines style="margin-top:3%">
+        <ion-col>
+            <button ion-button color="secondary" (click)="cerrar()" clear>Cancelar</button>
+        </ion-col>
+        <ion-col>
+            <button  style="float: right;" ion-button color="primary" (click)="closeModal()" clear>Aceptar</button>
+        </ion-col>
+    </ion-item>
+
+</ion-content>

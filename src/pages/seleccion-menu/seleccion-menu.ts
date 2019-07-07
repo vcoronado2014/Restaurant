@@ -150,7 +150,7 @@ export class SeleccionMenuPage {
     //la seleccion de menus debe ir
     if (this.faltan == 0 && this.arrMenus.length > 0){
 
-      let modal = this.modalCtrl.create(ReservaHoraPage, { item: this.item, mesa: this.mesaSeleccionada, restaurant: this.restaurant, arrMenus: this.arrMenus  });
+      let modal = this.modalCtrl.create(ReservaHoraPage, { item: this.item, mesa: this.mesaSeleccionada, restaurant: this.restaurant, arrMenus: this.arrMenus, total: this.total  });
       modal.present();
     }
     else{

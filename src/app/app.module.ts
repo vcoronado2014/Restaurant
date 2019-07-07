@@ -13,6 +13,7 @@ import { ReservaHoraPage } from '../pages/reserva-hora/reserva-hora';
 import { InicioPage } from '../pages/inicio/inicio';
 import { MisReservasPage } from '../pages/mis-reservas/mis-reservas';
 import { SeleccionMenuPage } from '../pages/seleccion-menu/seleccion-menu';
+import { ModalHorasPage } from '../pages/modal-horas/modal-horas';
 //servicios
 import { GlobalService } from '../app/services/GlobalService';
 
@@ -26,6 +27,7 @@ import { GlobalService } from '../app/services/GlobalService';
     InicioPage,
     MisReservasPage,
     SeleccionRestaurantPage,
+    ModalHorasPage,
     SeleccionMenuPage
   ],
   imports: [
@@ -42,7 +44,8 @@ import { GlobalService } from '../app/services/GlobalService';
     InicioPage,
     MisReservasPage,
     SeleccionRestaurantPage,
-    SeleccionMenuPage
+    SeleccionMenuPage,
+    ModalHorasPage
   ],
   providers: [
     StatusBar,

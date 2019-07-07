@@ -338,12 +338,23 @@ export class GlobalService {
                         restaurant.Mesas.forEach(mesa => {
                             if (mesa.Horas) {
                                 mesa.Horas.forEach(hora => {
+                                    hora.Segmento.forEach(segmento => {
+                                        if (segmento.Reservada) {
+                                            horasReservadas++;
+                                        }
+                                        else {
+                                            horasDisponibles++;
+                                        }
+                                    });
+
+                                    /*
                                     if (hora.Reservada) {
                                         horasReservadas++;
                                     }
                                     else {
                                         horasDisponibles++;
                                     }
+                                    */
                                 });
                             }
                         });
@@ -517,6 +528,14 @@ export class GlobalService {
             var arr = JSON.parse(localStorage.getItem('ARR_RESERVAS'));
             arr.forEach(reserva => {
                 if (reserva.Correo == correo){
+                    var fechaCorta = '';
+                    reserva.Hora.Segmento.forEach(segmento => {
+                        if (segmento.Reservada){
+                            fechaCorta = segmento.FechaCorta;
+                        }
+                    });
+                    reserva.FechaCorta = fechaCorta;
+
                     retorno.push(reserva);
                 }
                 
@@ -569,7 +588,7 @@ export class GlobalService {
         }
         return retorno;
     } 
-    insertarReserva(idRestaurant, idMesa, idHora, correo, horaCompleta, restaurant){
+    insertarReserva(idRestaurant, idMesa, idHora, correo, horaCompleta, restaurant, arrMenus, total){
         var retorno = {
             Usuario: null,
             Mensaje: null,
@@ -581,7 +600,9 @@ export class GlobalService {
             IdHora: idHora,
             Correo: correo,
             Hora: horaCompleta,
-            Restaurant: restaurant
+            Restaurant: restaurant,
+            Total: total,
+            Menus: arrMenus
         };
         //contaremos las reservas del usuario
         var cantidadReservas = this.contarReservasDelUsuario(correo, horaCompleta.FechaStr);
@@ -636,9 +657,16 @@ export class GlobalService {
         if (localStorage.getItem('ARR_HORAS_MESAS')) {
             var arreglo = JSON.parse(localStorage.getItem('ARR_HORAS_MESAS'));
             arreglo.forEach(hora => {
+                hora.Segmento.forEach(segmento => {
+                    if (segmento.Id == idHora){
+                        segmento.Reservada = true;
+                    }
+                });
+                /*
                 if (hora.Id == idHora){
                     hora.Reservada = true;
                 }
+                */
             });
             localStorage.setItem('ARR_HORAS_MESAS', JSON.stringify(arreglo));
         }
@@ -647,9 +675,16 @@ export class GlobalService {
         if (localStorage.getItem('ARR_HORAS_MESAS')) {
             var arreglo = JSON.parse(localStorage.getItem('ARR_HORAS_MESAS'));
             arreglo.forEach(hora => {
+                hora.Segmento.forEach(segmento => {
+                    if (segmento.Id == idHora){
+                        segmento.Reservada = false;
+                    }
+                });
+                /*
                 if (hora.Id == idHora){
                     hora.Reservada = false;
                 }
+                */
             });
             localStorage.setItem('ARR_HORAS_MESAS', JSON.stringify(arreglo));
         }

@@ -8,17 +8,27 @@
 
 <ion-content padding>
     <ion-list *ngIf="arrReservas.length > 0">
-        <ion-item-sliding  *ngFor="let item of arrReservas">
-        <ion-item>
+        <!--<ion-item-sliding  *ngFor="let item of arrReservas">-->
+        <ion-item *ngFor="let item of arrReservas">
           <ion-avatar item-start>
             <img [src]="item.Restaurant.Foto">
           </ion-avatar>
           <h2>{{ item.Restaurant.Nombre }}</h2>
           <p text-wrap>{{item.Restaurant.Direccion}}</p>
-          <p text-wrap><strong>El {{item.Hora.FechaStr}}</strong></p>
-          <ion-note class="note">Deslize a la izquierda para ver las opciones</ion-note>
+          <p text-wrap><strong>El {{item.Hora.FechaStr}} a las {{item.FechaCorta}}</strong></p>
+
+         
+          <ion-item *ngFor="let menu of item.Menus">
+            <h2>{{menu.Nombre}}</h2>
+            <p text-wrap text-justify>{{menu.Entrada}}, {{menu.Fondo}}, {{menu.Bebestible}} {{menu.Postre}}</p>
+          </ion-item>
+          <ion-item no-lines>
+              
+              <strong>$ {{item.Total}}</strong>
+              <ion-badge item-end (click)="eliminar(item)">Eliminar</ion-badge>
+            </ion-item>
         </ion-item>
-        
+        <!--
         <ion-item-options side="right">
             <button ion-button color="danger" (click)="eliminar(item)">
               <ion-icon name="trash"></ion-icon>
@@ -26,6 +36,7 @@
             </button>
           </ion-item-options>
         </ion-item-sliding>
+        -->
       </ion-list>
       <ion-list *ngIf="arrReservas.length == 0">
         <ion-item>

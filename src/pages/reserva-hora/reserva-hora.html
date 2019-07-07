@@ -19,10 +19,46 @@
   </ion-list>
   <ion-list>
     <ion-item text-wrap>
-      <p text-justify>Usted está reservando la {{mesaSeleccionada.Nombre}} para {{mesaSeleccionada.Cantidad}} personas, a continuación seleccione el día que desea reservarla y luego presione el botón "Reservar".</p>
+      <p text-justify>Usted está reservando la {{mesaSeleccionada.Nombre}} para {{mesaSeleccionada.Cantidad}} personas, a continuación seleccione el día y la hora que desea reservarla y luego presione el botón "Reservar".</p>
     </ion-item>
   </ion-list>
+  <ion-card>
 
+      <ion-card-header>
+        Hora Seleccionada
+      </ion-card-header>
+    
+      <ion-card-content>
+          <h3 *ngIf="horaFinalSeleccionada">Usted ha seleccionado el día {{horaFinalSeleccionada.FechaCompleta}} a las {{horaFinalSeleccionada.FechaCorta}} </h3>
+          <h3 *ngIf="!horaFinalSeleccionada">No hay Hora seleccionada</h3>
+      </ion-card-content>
+    
+    </ion-card>
+  <ion-list>
+    
+      <button ion-item *ngFor="let item of mesaSeleccionada.Horas" (click)="presentModal(item)">
+          {{item.FechaStr}} <ion-badge color="success" style="float: right;">{{item.CantidadCupos}} de {{item.Segmento.length}}</ion-badge>
+          <!--
+          <ion-badge *ngIf="item.Mostrar"> {{horaFinalSeleccionada.FechaStr}}</ion-badge>
+          
+          <ion-list *ngIf="item.Mostrar" no-lines style="margin: 0;">
+            <ion-item *ngFor="let seg of item.Segmento" [hidden]="!seg.Reservada">
+              <ion-badge *ngIf="seg.Reservada"> {{seg.FechaStr}}</ion-badge>
+
+            </ion-item>
+          </ion-list>-->
+      </button>  
+    </ion-list>
+<!--
+    <ion-list>
+        <ion-item *ngFor="let item of mesaSeleccionada.Horas">
+          <h2>{{item.FechaStr}}</h2>
+          <ion-item *ngFor="let seg of item.Segmento">
+              {{seg.FechaStr}} <ion-radio [value]="seg.Id" [disabled]="seg.Reservada" (click)="seleccionarHora(seg)"></ion-radio>
+          </ion-item>
+        </ion-item>
+    </ion-list>-->
+    <!--
   <ion-list radio-group>
       <ion-list-header>
         Días Disponibles
@@ -30,11 +66,17 @@
     
       <ion-item *ngFor="let item of mesaSeleccionada.Horas">
         <ion-label><strong>{{item.FechaStr}}</strong></ion-label>
-        <ion-radio  [value]="item.Id" [disabled]="item.Reservada" (click)="showRadio(item)"></ion-radio>
+        <ion-radio [value]="item.Id" [disabled]="item.Reservada" (click)="presentModal(item)"></ion-radio>
+      
+        <ion-item *ngFor="let seg of item.Segmento">
+          <p *ngIf="seg.Reservada">
+            {{seg.FechaStr}}
+          </p>
+        </ion-item>
       </ion-item>
 
     </ion-list>
-
+-->
 
     <ion-item no-lines style="margin-top:3%">
         <ion-col>
