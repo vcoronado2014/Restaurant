@@ -32,6 +32,17 @@ export class MyApp {
       fechaInicio.setMilliseconds(0);
       localStorage.setItem('FECHA_INICIO', moment(fechaInicio).format());
     }
+    else{
+      var fechaConfigurada = localStorage.getItem('FECHA_INICIO');
+      if (moment(fechaConfigurada) < moment()){
+        var fechaInicio = moment().add(1, 'days').toDate();
+        fechaInicio.setHours(10);
+        fechaInicio.setMinutes(0);
+        fechaInicio.setSeconds(0);
+        fechaInicio.setMilliseconds(0);
+        localStorage.setItem('FECHA_INICIO', moment(fechaInicio).format());
+      }
+    }
     //estos son datos estaticos
     //COMUNAS
     if (!localStorage.getItem('ARR_COMUNAS')){
